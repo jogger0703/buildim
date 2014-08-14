@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="libim">
+      <UniqueIdentifier>{5a596ae7-c058-4f2f-8950-0c86633f1c81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util">
+      <UniqueIdentifier>{f703ea9a-ae61-4648-b204-82e8a98f3c3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="im">
+      <UniqueIdentifier>{a777bfdd-a89b-464b-b94a-b4ae9cae86d6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="util\char_operation.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="util\network.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="libim\account.cpp">
+      <Filter>libim</Filter>
+    </ClCompile>
+    <ClCompile Include="libim\blist.cpp">
+      <Filter>libim</Filter>
+    </ClCompile>
+    <ClCompile Include="libim\connection.cpp">
+      <Filter>libim</Filter>
+    </ClCompile>
+    <ClCompile Include="libim\conversation.cpp">
+      <Filter>libim</Filter>
+    </ClCompile>
+    <ClCompile Include="libim\core.cpp">
+      <Filter>libim</Filter>
+    </ClCompile>
+    <ClCompile Include="libim\signal.cpp">
+      <Filter>libim</Filter>
+    </ClCompile>
+    <ClCompile Include="libim\value.cpp">
+      <Filter>libim</Filter>
+    </ClCompile>
+    <ClCompile Include="im\main.cpp">
+      <Filter>im</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="util\char_operation.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="util\network.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="libim\account.h">
+      <Filter>libim</Filter>
+    </ClInclude>
+    <ClInclude Include="libim\blist.h">
+      <Filter>libim</Filter>
+    </ClInclude>
+    <ClInclude Include="libim\connection.h">
+      <Filter>libim</Filter>
+    </ClInclude>
+    <ClInclude Include="libim\conversation.h">
+      <Filter>libim</Filter>
+    </ClInclude>
+    <ClInclude Include="libim\core.h">
+      <Filter>libim</Filter>
+    </ClInclude>
+    <ClInclude Include="libim\signal.h">
+      <Filter>libim</Filter>
+    </ClInclude>
+    <ClInclude Include="libim\value.h">
+      <Filter>libim</Filter>
+    </ClInclude>
+    <ClInclude Include="util\error_process.h">
+      <Filter>util</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
