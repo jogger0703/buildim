@@ -1,5 +1,6 @@
 #include "core.h"
 #include "signal.h"
+#include "connection.h"
 #include "../util/network.h"
 
 im_core g_im_core;
@@ -7,7 +8,7 @@ im_core g_im_core;
 bool im_core::init() 
 {
 	winsock_init();
-	
+	im_connection::init();
 	
 
 	return true;
@@ -15,7 +16,7 @@ bool im_core::init()
 
 void im_core::quit()
 {
-	
+	im_connection::uninit();
 }
 
 im_core* im_core::get_core()

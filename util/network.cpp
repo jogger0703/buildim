@@ -38,7 +38,7 @@ __int32 connect_nob(__int32 sockfd, const SA* saptr, socklen_t salen, __int32 ns
     error = 0;
     if (( n = connect(sockfd, saptr, salen)) < 0) {
 #ifdef WIN32
-		if (getneterror() != 10035)
+		if (getneterror() != 10035) // 非阻塞连接的正常错误
 #else
 		if (errno != EINPROGRESS)
 #endif

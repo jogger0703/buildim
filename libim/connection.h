@@ -3,6 +3,8 @@
 
 #include "value.h"
 
+struct event;
+struct evbuffer;
 class im_account;
 class im_connection;
 
@@ -42,6 +44,8 @@ typedef struct
 	void (*network_disconnected)(im_connection* conn);
 	void (*report_disconnect)(im_connection *conn, const char *text);
 	void (*network_error)(im_connection* conn, int err);
+	void (*can_read)(im_connection* conn);
+//	void (*can_write)(im_connection* conn);
 } im_connection_ui_ops;
 
 class im_connection
@@ -55,9 +59,22 @@ public:
 	char*				_password;
 	std::string			_host;
 	std::string			_serv; // port or serv name
+
+	bool				_quit;
+
 	__int32				_fd;
 	
+	// 读事件
+	struct event		*_re;
+	// 写事件
+	struct event		*_we;
+	// 读缓冲区，待读取
+	struct evbuffer		*_in;
+	// 写缓冲区，待发送
+	struct evbuffer		*_out;
 
+	static void			init(void);
+	static void			uninit(void);
 	void				set_ui_ops(im_connection_ui_ops* ops);
 	void				set_account(im_account* account);
 
@@ -81,6 +98,15 @@ public:
 
 	int					write(const char* buf, int len);
 	int					read(char* buf, int max_len);
+
+	/** 
+	 * 执行阻塞的libevent事件循环。
+	 * 当libevent中有敏感的事件发生时候，会自动调用设置的回调
+	 * 这个动作会导致另起一个额外的线程执行libevent的dispatch
+	 * 而且全部的链接共享这一个线程
+	 */
+	static void			dispatch(void);
+	static void			exit_dispatch(void);
 };
 
 

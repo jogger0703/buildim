@@ -58,6 +58,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>LIBCMT.lib</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -79,6 +81,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="im\main.cpp" />
+    <ClCompile Include="im\mconn.cpp" />
     <ClCompile Include="libim\account.cpp" />
     <ClCompile Include="libim\blist.cpp" />
     <ClCompile Include="libim\connection.cpp" />
@@ -87,9 +90,12 @@
     <ClCompile Include="libim\signal.cpp" />
     <ClCompile Include="libim\value.cpp" />
     <ClCompile Include="util\char_operation.cpp" />
+    <ClCompile Include="util\config.cpp" />
     <ClCompile Include="util\network.cpp" />
+    <ClCompile Include="util\workq.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="im\mconn.h" />
     <ClInclude Include="libim\account.h" />
     <ClInclude Include="libim\blist.h" />
     <ClInclude Include="libim\connection.h" />
@@ -98,8 +104,11 @@
     <ClInclude Include="libim\signal.h" />
     <ClInclude Include="libim\value.h" />
     <ClInclude Include="util\char_operation.h" />
+    <ClInclude Include="util\config.h" />
     <ClInclude Include="util\error_process.h" />
     <ClInclude Include="util\network.h" />
+    <ClInclude Include="util\SimpleIni.h" />
+    <ClInclude Include="util\workq.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -10,6 +10,9 @@
     <Filter Include="im">
       <UniqueIdentifier>{a777bfdd-a89b-464b-b94a-b4ae9cae86d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="libim\protocol">
+      <UniqueIdentifier>{c512b086-e4fd-4a96-b154-10f451ebe767}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="util\char_operation.cpp">
@@ -42,6 +45,15 @@
     <ClCompile Include="im\main.cpp">
       <Filter>im</Filter>
     </ClCompile>
+    <ClCompile Include="im\mconn.cpp">
+      <Filter>im</Filter>
+    </ClCompile>
+    <ClCompile Include="util\workq.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="util\config.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="util\char_operation.h">
@@ -72,6 +84,18 @@
       <Filter>libim</Filter>
     </ClInclude>
     <ClInclude Include="util\error_process.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="im\mconn.h">
+      <Filter>im</Filter>
+    </ClInclude>
+    <ClInclude Include="util\workq.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="util\config.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="util\SimpleIni.h">
       <Filter>util</Filter>
     </ClInclude>
   </ItemGroup>
