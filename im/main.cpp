@@ -3,6 +3,7 @@
 #include "mconn.h"
 #include "util/error_process.h"
 #include "util/config.h"
+#include "util/exstring.h"
 
 static void network_connected(im_connection* conn) {
 	printf("connected %s:%s\n", conn->_host.c_str(), conn->_serv.c_str());

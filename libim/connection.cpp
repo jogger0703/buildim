@@ -69,12 +69,18 @@ void im_connection::connect(const char* host, const char* serv)
 {
 	_host = host;
 	_serv = serv;
+	_state = LIBIM_DISCONNECTED;
 	_fd = tcp_connect(host, serv);
 	if (_fd == -1) {
 		if (_ops->network_error)
 			_ops->network_error(this, getneterror());
 		return;
 	}
+
+	_state = LIBIM_CONNECTED;
+
+	if (_events->connect_cb)
+		_events->connect_cb(this);
 
 	if (_ops->network_connected)
 		_ops->network_connected(this);
@@ -95,6 +101,8 @@ void im_connection::disconnect(void)
 	closesocket(_fd);
 	if (_ops->network_disconnected)
 		_ops->network_disconnected(this);
+	if (_events->connect_cb)
+		_events->connect_cb(this);
 }
 
 /** 

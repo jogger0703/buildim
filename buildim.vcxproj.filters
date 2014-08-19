@@ -13,6 +13,9 @@
     <Filter Include="libim\protocol">
       <UniqueIdentifier>{c512b086-e4fd-4a96-b154-10f451ebe767}</UniqueIdentifier>
     </Filter>
+    <Filter Include="libim\protocol\eyou">
+      <UniqueIdentifier>{cca09eb3-503c-4a28-9e1d-28c7ceb1575a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="util\char_operation.cpp">
@@ -57,8 +60,26 @@
     <ClCompile Include="libim\protocol_plugin.cpp">
       <Filter>libim</Filter>
     </ClCompile>
-    <ClCompile Include="libim\protocol\eyou.cpp">
-      <Filter>libim\protocol</Filter>
+    <ClCompile Include="util\exstring.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="libim\protocol\eyou\eyou.cpp">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClCompile>
+    <ClCompile Include="libim\protocol\eyou\libeyou.cpp">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClCompile>
+    <ClCompile Include="libim\protocol\eyou\iq.cpp">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClCompile>
+    <ClCompile Include="libim\protocol\eyou\message.cpp">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClCompile>
+    <ClCompile Include="libim\protocol\eyou\presence.cpp">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClCompile>
+    <ClCompile Include="libim\protocol\eyou\packet.cpp">
+      <Filter>libim\protocol\eyou</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -107,8 +128,23 @@
     <ClInclude Include="libim\protocol_plugin.h">
       <Filter>libim</Filter>
     </ClInclude>
-    <ClInclude Include="libim\protocol\eyou.h">
-      <Filter>libim\protocol</Filter>
+    <ClInclude Include="util\exstring.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="libim\protocol\eyou\eyou.h">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClInclude>
+    <ClInclude Include="libim\protocol\eyou\iq.h">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClInclude>
+    <ClInclude Include="libim\protocol\eyou\message.h">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClInclude>
+    <ClInclude Include="libim\protocol\eyou\presence.h">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClInclude>
+    <ClInclude Include="libim\protocol\eyou\packet.h">
+      <Filter>libim\protocol\eyou</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

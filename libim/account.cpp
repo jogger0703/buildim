@@ -17,5 +17,10 @@ void im_account::connect_server()
 		return;
 	}
 
+	// 为登录创建一个新的链接
+	im_connection* conn = new im_connection();
+	conn->_account = this;
+	_connection = conn;
+
 	imp->login(this);
 }

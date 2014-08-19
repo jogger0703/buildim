@@ -49,6 +49,7 @@ typedef struct
 
 typedef struct
 {
+	void (*connect_cb)(im_connection* conn);
 	void (*can_read)(im_connection* conn);
 } im_connection_event_process;
 

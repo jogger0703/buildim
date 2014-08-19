@@ -5,8 +5,8 @@
 extern "C"{
 #endif
 
-wchar_t * utf8_dup_unicode(const char* src)
-{
+// wchar_t * utf8_dup_unicode(const char* src)
+// {
 // 	int nchar;
 // 	wchar_t* buf = NULL;
 // 
@@ -21,8 +21,8 @@ wchar_t * utf8_dup_unicode(const char* src)
 // 	}
 // 	return buf;
 
-	return 0;
-}
+// 	return 0;
+// }
 
 #ifdef __cplusplus
 }
