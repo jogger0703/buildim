@@ -1,6 +1,7 @@
 #include "core.h"
 #include "signal.h"
 #include "connection.h"
+#include "protocol_plugin.h"
 #include "../util/network.h"
 
 im_core g_im_core;
@@ -9,7 +10,7 @@ bool im_core::init()
 {
 	winsock_init();
 	im_connection::init();
-	
+	protocol_plugin::init();
 
 	return true;
 }

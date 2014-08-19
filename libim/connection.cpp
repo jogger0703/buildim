@@ -16,6 +16,8 @@ static struct event_base *base = NULL;
 static bool libevent_quit = true;
 // 用于支持libevent工作的线程池
 static WorkQ libevent_wq;
+// ui回调是所有链接共享的。一次设置，全部生效
+static im_connection_ui_ops* _ops;
 
 
 static void write_cb(evutil_socket_t sock, short flags, void * args)
@@ -24,14 +26,12 @@ static void write_cb(evutil_socket_t sock, short flags, void * args)
 
 	if (evbuffer_get_length(conn->_out) > 0)
 		evbuffer_write(conn->_out, conn->_fd);
-// 	if (conn && conn->_ops && conn->_ops->can_write)
-// 		conn->_ops->can_write(conn);
 }
 static void read_cb(evutil_socket_t sock, short flags, void * args)
 {
 	im_connection* conn = (im_connection*)args;
-	if (conn && conn->_ops && conn->_ops->can_read)
-		conn->_ops->can_read(conn);
+	if (_ops && _ops->can_read)
+		_ops->can_read(conn);
 }
 
 
@@ -49,6 +49,18 @@ void im_connection::uninit()
 void im_connection::set_ui_ops(im_connection_ui_ops* ops) {
 	_ops = ops;
 }
+im_connection_ui_ops* im_connection::get_ui_ops(void) {
+	return _ops;
+}
+
+void im_connection::set_event_process(im_connection_event_process* proc) {
+	_events = proc;
+}
+im_connection_event_process* im_connection::get_event_process(void) {
+	return _events;
+}
+
+
 void im_connection::set_account(im_account* account) {
 	_account = account;
 }

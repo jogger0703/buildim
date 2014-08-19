@@ -8,24 +8,28 @@ class im_connection;
 
 class im_account
 {
-	std::string		username;
-	std::string		alias;
-	std::string		password;
-	std::string		userinfo;
-	std::string		buddy_icon_path;
-	bool			remember_pass;
-	hash_config		settings;
-
-	im_connection*	connection;
-
 public:
-	std::string		get_username() {return username;}
-	im_connection*	get_connection() {return connection;}
+	std::string		_username;
+	std::string		_alias;
+	std::string		_password;
+	std::string		_userinfo;
+	std::string		_buddy_icon_path;
+	std::string		_protocal_name;
+
+	bool			_remember_pass;
+	hash_config		_settings;
+
+
+	im_connection*	_connection;
+
+	std::string		get_username() {return _username;}
+	im_connection*	get_connection() {return _connection;}
 
 	bool			is_connected();
 	bool			is_connecting();
 	bool			is_disconnected();
 
+	void			connect_server();
 	// settings
 	// 这些函数直接访问成员变量settings.get_string set_string ...
 // 	std::string		get_conf_string(const char* name, const char* default_value);

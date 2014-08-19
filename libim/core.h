@@ -2,6 +2,11 @@
 #define ___LIBIM_CORE__H__
 
 #include "value.h"
+#include "account.h"
+#include "connection.h"
+#include "blist.h"
+#include "conversation.h"
+#include "signal.h"
 
 typedef struct
 {

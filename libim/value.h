@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <hash_map>
+#include <string>
 
 typedef enum
 {

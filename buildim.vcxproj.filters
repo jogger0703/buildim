@@ -54,6 +54,12 @@
     <ClCompile Include="util\config.cpp">
       <Filter>util</Filter>
     </ClCompile>
+    <ClCompile Include="libim\protocol_plugin.cpp">
+      <Filter>libim</Filter>
+    </ClCompile>
+    <ClCompile Include="libim\protocol\eyou.cpp">
+      <Filter>libim\protocol</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="util\char_operation.h">
@@ -97,6 +103,12 @@
     </ClInclude>
     <ClInclude Include="util\SimpleIni.h">
       <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="libim\protocol_plugin.h">
+      <Filter>libim</Filter>
+    </ClInclude>
+    <ClInclude Include="libim\protocol\eyou.h">
+      <Filter>libim\protocol</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
