@@ -8,8 +8,7 @@
 static char* strdup_vprintf(const char* format, va_list args)
 {
 	// 获取缓冲区长度
-	int len2 = _vscprintf(format, args);
-	int len = vsnprintf(NULL, 0, format, args);
+	int len = _vscprintf(format, args);
 	char *buffer = new char[len + 1];
 
 	// 格式化

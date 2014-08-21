@@ -39,13 +39,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>util;libim;.;thirdparty\libevent-2.0.21-stable\include;thirdparty\libevent-2.0.21-stable\WIN32-Code;$(IncludePath)</IncludePath>
-    <LibraryPath>thirdparty\libevent-2.0.21-stable;$(LibraryPath)</LibraryPath>
+    <IncludePath>util;libim;.;thirdparty\libevent-2.0.21-stable\include;thirdparty\libevent-2.0.21-stable\WIN32-Code;thirdparty\iconv-1.9.2.win32\include;thirdparty\libxml2-2.7.1.win32\include;$(IncludePath)</IncludePath>
+    <LibraryPath>thirdparty\libevent-2.0.21-stable;thirdparty\iconv-1.9.2.win32\lib;thirdparty\libxml2-2.7.1.win32\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>util;libim;.;thirdparty\libevent-2.0.21-stable\include;thirdparty\libevent-2.0.21-stable\WIN32-Code;$(IncludePath)</IncludePath>
-    <LibraryPath>thirdparty\libevent-2.0.21-stable;$(LibraryPath)</LibraryPath>
+    <IncludePath>util;libim;.;thirdparty\libevent-2.0.21-stable\include;thirdparty\libevent-2.0.21-stable\WIN32-Code;thirdparty\iconv-1.9.2.win32\include;thirdparty\libxml2-2.7.1.win32\include;$(IncludePath)</IncludePath>
+    <LibraryPath>thirdparty\libevent-2.0.21-stable;thirdparty\iconv-1.9.2.win32\lib;thirdparty\libxml2-2.7.1.win32\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -88,10 +88,12 @@
     <ClCompile Include="libim\conversation.cpp" />
     <ClCompile Include="libim\core.cpp" />
     <ClCompile Include="libim\protocol\eyou\eyou.cpp" />
+    <ClCompile Include="libim\protocol\eyou\io.cpp" />
     <ClCompile Include="libim\protocol\eyou\iq.cpp" />
     <ClCompile Include="libim\protocol\eyou\libeyou.cpp" />
     <ClCompile Include="libim\protocol\eyou\message.cpp" />
     <ClCompile Include="libim\protocol\eyou\packet.cpp" />
+    <ClCompile Include="libim\protocol\eyou\parser.cpp" />
     <ClCompile Include="libim\protocol\eyou\presence.cpp" />
     <ClCompile Include="libim\protocol_plugin.cpp" />
     <ClCompile Include="libim\signal.cpp" />
@@ -99,6 +101,7 @@
     <ClCompile Include="util\char_operation.cpp" />
     <ClCompile Include="util\config.cpp" />
     <ClCompile Include="util\exstring.cpp" />
+    <ClCompile Include="util\log.cpp" />
     <ClCompile Include="util\network.cpp" />
     <ClCompile Include="util\workq.cpp" />
   </ItemGroup>
@@ -110,9 +113,11 @@
     <ClInclude Include="libim\conversation.h" />
     <ClInclude Include="libim\core.h" />
     <ClInclude Include="libim\protocol\eyou\eyou.h" />
+    <ClInclude Include="libim\protocol\eyou\io.h" />
     <ClInclude Include="libim\protocol\eyou\iq.h" />
     <ClInclude Include="libim\protocol\eyou\message.h" />
     <ClInclude Include="libim\protocol\eyou\packet.h" />
+    <ClInclude Include="libim\protocol\eyou\parser.h" />
     <ClInclude Include="libim\protocol\eyou\presence.h" />
     <ClInclude Include="libim\protocol_plugin.h" />
     <ClInclude Include="libim\signal.h" />
@@ -121,6 +126,7 @@
     <ClInclude Include="util\config.h" />
     <ClInclude Include="util\error_process.h" />
     <ClInclude Include="util\exstring.h" />
+    <ClInclude Include="util\log.h" />
     <ClInclude Include="util\network.h" />
     <ClInclude Include="util\SimpleIni.h" />
     <ClInclude Include="util\workq.h" />

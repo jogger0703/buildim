@@ -30,8 +30,8 @@ static void write_cb(evutil_socket_t sock, short flags, void * args)
 static void read_cb(evutil_socket_t sock, short flags, void * args)
 {
 	im_connection* conn = (im_connection*)args;
-	if (_ops && _ops->can_read)
-		_ops->can_read(conn);
+	if (conn->_events && conn->_events->can_read)
+		conn->_events->can_read(conn);
 }
 
 
@@ -79,12 +79,6 @@ void im_connection::connect(const char* host, const char* serv)
 
 	_state = LIBIM_CONNECTED;
 
-	if (_events->connect_cb)
-		_events->connect_cb(this);
-
-	if (_ops->network_connected)
-		_ops->network_connected(this);
-
 	set_sock_block(_fd, false);
 
 	_re = event_new(base, _fd, EV_READ|EV_PERSIST, read_cb, (void*)this);
@@ -94,11 +88,19 @@ void im_connection::connect(const char* host, const char* serv)
 
 	_in = evbuffer_new();
 	_out = evbuffer_new();
+
+	if (_events->connect_cb)
+		_events->connect_cb(this);
+
+	if (_ops->network_connected)
+		_ops->network_connected(this);
 }
 
 void im_connection::disconnect(void)
 {
 	closesocket(_fd);
+	evbuffer_free(_in);
+	evbuffer_free(_out);
 	if (_ops->network_disconnected)
 		_ops->network_disconnected(this);
 	if (_events->connect_cb)
@@ -126,14 +128,35 @@ int im_connection::write(const char* buf, int len)
  */
 int im_connection::read(char* buf, int max_len)
 {
-	int nread = evbuffer_read(_in, _fd, max_len);
-	if (nread <= 0) {
-		if (_ops->network_disconnected)
-			_ops->network_disconnected(this);
+	int buflen = peek(buf, max_len);
+	if (buflen < 0)
 		return -1;
+
+	if (evbuffer_drain(_in, buflen) < 0)
+		return -1;
+	return buflen;
+}
+
+/** 
+ * 窥探缓冲区，但不清空
+ * 参考read函数
+ * 如果@buf为空，则返回缓冲区长度
+ */
+int im_connection::peek(char* buf, int max_len)
+{
+	int buflen = evbuffer_get_length(_in);
+	if (buflen < max_len) {
+		if (evbuffer_read(_in, _fd, max_len-buflen) < 0) {
+			if (_ops->network_disconnected)
+				_ops->network_disconnected(this);
+			return -1;
+		}
 	}
 
-	return evbuffer_remove(_in, buf, max_len);
+	if (buf)
+		return evbuffer_copyout(_in, buf, max_len);
+	else
+		return evbuffer_get_length(_in);
 }
 
 static int run_dispatch(void* arg)

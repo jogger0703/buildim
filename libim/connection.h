@@ -44,7 +44,6 @@ typedef struct
 	void (*network_disconnected)(im_connection* conn);
 	void (*report_disconnect)(im_connection *conn, const char *text);
 	void (*network_error)(im_connection* conn, int err);
-	void (*can_read)(im_connection* conn);
 } im_connection_ui_ops;
 
 typedef struct
@@ -112,6 +111,7 @@ public:
 
 	int					write(const char* buf, int len);
 	int					read(char* buf, int max_len);
+	int					peek(char* buf, int max_len);
 
 	/** 
 	 * 执行阻塞的libevent事件循环。

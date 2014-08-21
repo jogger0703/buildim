@@ -31,9 +31,29 @@ static void network_error(im_connection* conn, int err) {
 	printf("connect error:%s", errno2msg(err).c_str());
 }
 static void can_read(im_connection* conn) {
-	char buf[1024];
+	char buf[1024] = {0};
 	conn->read(buf, 1023);
+	printf("%s", buf);
 }
+
+
+static void connect_cb(im_connection* conn) {
+	if (conn->_state == LIBIM_DISCONNECTED) {
+		// 销毁客户端。用户重新登录时，会再次新建
+		conn->_proto_data = NULL;
+	}
+	if (conn->_state == LIBIM_CONNECTED) {
+		conn->write("hello wrold", 12);
+	}
+}
+
+static im_connection_event_process event_proc = 
+{
+	connect_cb,
+	can_read
+};
+
+
 
 static im_connection_ui_ops ops =
 {
@@ -44,22 +64,22 @@ static im_connection_ui_ops ops =
 	network_connected,
 	network_disconnected,
 	NULL,
-	network_error,
-	can_read
+	network_error
 };
 
 im_connection conn;
 
 void test_conn()
 {
-//	im_connection::set_ui_ops(&ops);
+	im_connection::set_ui_ops(&ops);
+	conn.set_event_process(&event_proc);
 	conn.connect("172.16.100.223", "7732");
 	
 	im_connection::dispatch();
 
 	int n = 3;
 	while (n--) {
-		conn.write("hello", 5);
+		//conn.write("hello", 5);
 		Sleep(1000);
 	}
 

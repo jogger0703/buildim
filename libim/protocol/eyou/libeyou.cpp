@@ -7,9 +7,9 @@
 #include <windows.h>
 
 static void can_read(im_connection* conn) {
-	char buf[1024];
-	conn->read(buf, 1023);
+	eyou_read_socket(conn);
 }
+
 static void connect_cb(im_connection* conn) {
 	eyou* e = (eyou*)conn->_proto_data;
 
@@ -20,11 +20,18 @@ static void connect_cb(im_connection* conn) {
 	}
 	if (conn->_state == LIBIM_CONNECTED) {
 		// 连接成功，开始登录
-		eyou_iq iq;
-		iq._id = "101";
-		iq._method = "auth";
-		
-		conn->write();
+// 		eyou_iq iq;
+// 		iq._id = "101";
+// 		iq._method = "auth";
+// 		
+// 		eyou_write_packet(conn, &iq);
+
+		std::string authpack;
+		authpack = string_format("<iq method=\"auth\" id=\"101\"><username>%s</username><password>%s</password></iq>",
+			conn->_account->_username.c_str(),
+			conn->_account->_password.c_str());
+
+		eyou_write_plain(conn, authpack.c_str(), authpack.length());
 	}
 }
 

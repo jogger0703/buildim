@@ -4,6 +4,7 @@
 #include "util/error_process.h"
 #include "util/config.h"
 #include "util/exstring.h"
+#include "util/log.h"
 
 static void network_connected(im_connection* conn) {
 	printf("connected %s:%s\n", conn->_host.c_str(), conn->_serv.c_str());
@@ -32,12 +33,18 @@ static im_connection_ui_ops ops =
 int main(int argc, char** argv)
 {
 	g_im_core.init();
+
+	DPRINT(LOG_INFO, "hellor %s", "ÄãºÃ");
+	
+
+// 	test_conn();
+// 	return 0;
 	im_connection::set_ui_ops(&ops);
 
 	im_account acc;
 	acc._protocal_name = "eyouim";
 	acc._username = "im@eyou.net";
-	acc._password = "Zhanghua528625";
+	acc._password = "WmhhbmdodWE1Mjg2MjU=";
 	acc.connect_server();
 
 	while (1) {

@@ -7,6 +7,7 @@
 #include "blist.h"
 #include "conversation.h"
 #include "signal.h"
+#include "log.h"
 
 typedef struct
 {

@@ -11,6 +11,7 @@ bool im_core::init()
 	winsock_init();
 	im_connection::init();
 	protocol_plugin::init();
+	DPRINT_INIT("log.txt", LOG_INFO, true);
 
 	return true;
 }

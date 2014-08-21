@@ -81,6 +81,15 @@
     <ClCompile Include="libim\protocol\eyou\packet.cpp">
       <Filter>libim\protocol\eyou</Filter>
     </ClCompile>
+    <ClCompile Include="libim\protocol\eyou\parser.cpp">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClCompile>
+    <ClCompile Include="libim\protocol\eyou\io.cpp">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClCompile>
+    <ClCompile Include="util\log.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="util\char_operation.h">
@@ -145,6 +154,15 @@
     </ClInclude>
     <ClInclude Include="libim\protocol\eyou\packet.h">
       <Filter>libim\protocol\eyou</Filter>
+    </ClInclude>
+    <ClInclude Include="libim\protocol\eyou\parser.h">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClInclude>
+    <ClInclude Include="libim\protocol\eyou\io.h">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClInclude>
+    <ClInclude Include="util\log.h">
+      <Filter>util</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
