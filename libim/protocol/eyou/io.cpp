@@ -1,4 +1,5 @@
 #include "io.h"
+#include "parser.h"
 
 
 typedef struct {
@@ -40,8 +41,9 @@ void eyou_read_socket(im_connection* conn)
 		return;
 
 	conn->read((char*)&h, packet_head_len);
-	char* buf = new char[h.pack_len];
+	char* buf = new char[h.pack_len + 1];
 	conn->read(buf, h.pack_len);
+	buf[h.pack_len] = '\0';
 	eyou_parser_process((eyou*)conn->_proto_data, buf, h.pack_len);
 	delete []buf;
 }

@@ -97,6 +97,7 @@
     <ClCompile Include="libim\protocol\eyou\presence.cpp" />
     <ClCompile Include="libim\protocol_plugin.cpp" />
     <ClCompile Include="libim\signal.cpp" />
+    <ClCompile Include="libim\status.cpp" />
     <ClCompile Include="libim\value.cpp" />
     <ClCompile Include="util\char_operation.cpp" />
     <ClCompile Include="util\config.cpp" />
@@ -121,6 +122,7 @@
     <ClInclude Include="libim\protocol\eyou\presence.h" />
     <ClInclude Include="libim\protocol_plugin.h" />
     <ClInclude Include="libim\signal.h" />
+    <ClInclude Include="libim\status.h" />
     <ClInclude Include="libim\value.h" />
     <ClInclude Include="util\char_operation.h" />
     <ClInclude Include="util\config.h" />

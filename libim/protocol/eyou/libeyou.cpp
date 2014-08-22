@@ -4,6 +4,7 @@
 #include "connection.h"
 #include "exstring.h"
 #include "iq.h"
+#include "io.h"
 #include <windows.h>
 
 static void can_read(im_connection* conn) {
@@ -19,19 +20,8 @@ static void connect_cb(im_connection* conn) {
 		conn->_proto_data = NULL;
 	}
 	if (conn->_state == LIBIM_CONNECTED) {
-		// 连接成功，开始登录
-// 		eyou_iq iq;
-// 		iq._id = "101";
-// 		iq._method = "auth";
-// 		
-// 		eyou_write_packet(conn, &iq);
-
-		std::string authpack;
-		authpack = string_format("<iq method=\"auth\" id=\"101\"><username>%s</username><password>%s</password></iq>",
-			conn->_account->_username.c_str(),
-			conn->_account->_password.c_str());
-
-		eyou_write_plain(conn, authpack.c_str(), authpack.length());
+		DPRINT(LOG_INFO, "connected server %s:%s", conn->_host.c_str(), conn->_serv.c_str());
+		e->set_auth_state(EYOU_STATE_CONNECTED);
 	}
 }
 
@@ -47,6 +37,8 @@ static void eyou_login(im_account* acc)
 	// 创建一个eyou客户端
 	eyou* e = new eyou();
 	conn->_proto_data = e;
+	e->_account = acc;
+	e->_conn = acc->get_connection();
 
 	conn->set_event_process(&event_proc);
 

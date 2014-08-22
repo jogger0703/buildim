@@ -6,18 +6,22 @@
 #include "util/exstring.h"
 #include "util/log.h"
 
+
+//////////////////////////////////////////////////////////////////////////
+// connection ui
+//////////////////////////////////////////////////////////////////////////
+
 static void network_connected(im_connection* conn) {
-	printf("connected %s:%s\n", conn->_host.c_str(), conn->_serv.c_str());
+	// TODO
 }
 static void network_disconnected(im_connection* conn) {
-
+	// TODO
 }
 static void network_error(im_connection* conn, int err) {
-	int n = err;
-	printf("connect error:%s", errno2msg(err).c_str());
+	// TODO
 }
 
-static im_connection_ui_ops ops =
+static im_connection_ui_ops conn_ops =
 {
 	NULL,
 	NULL,
@@ -29,17 +33,29 @@ static im_connection_ui_ops ops =
 	network_error,
 };
 
+//////////////////////////////////////////////////////////////////////////
+// account ui
+//////////////////////////////////////////////////////////////////////////
+void status_changed(im_account* account, im_status status)
+{
+	DPRINT(LOG_INFO, "%s change status -> %d", account->_username.c_str(), status);
+}
+
+static im_account_ui_ops account_ops =
+{
+	status_changed
+};
+
+//////////////////////////////////////////////////////////////////////////
+// main
+//////////////////////////////////////////////////////////////////////////
 
 int main(int argc, char** argv)
 {
 	g_im_core.init();
 
-	DPRINT(LOG_INFO, "hellor %s", "ÄãºÃ");
-	
-
-// 	test_conn();
-// 	return 0;
-	im_connection::set_ui_ops(&ops);
+	im_connection::set_ui_ops(&conn_ops);
+	im_account::set_ui_ops(&account_ops);
 
 	im_account acc;
 	acc._protocal_name = "eyouim";

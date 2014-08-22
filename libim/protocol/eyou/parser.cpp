@@ -1,5 +1,6 @@
 #include "parser.h"
 #include "eyou.h"
+#include "process.h"
 #include <libxml/parser.h>
 
 static void
@@ -76,7 +77,7 @@ static xmlSAXHandler jabber_parser_libxml = {
 
 void eyou_parser_process(eyou *e, const char *buf, int len)
 {
-#if 0 // 使用sax进行流式解析
+#ifdef STREAM_PARSE // 使用sax进行流式解析
 	int ret;
 
 	if (e->_context == NULL) {
@@ -91,10 +92,14 @@ void eyou_parser_process(eyou *e, const char *buf, int len)
 			level = err->level;
 	}
 #else // 块解析
-	eyou_packet* p = make_packet(buf, len);
+	eyou_packet* p = make_packet(e, buf, len);
 	if (!p) {
-		
+		DPRINT(LOG_ERROR, "make_packet error!");
+		return;
 	}
+
+	p->process();
+	delete p; // ! destroy packet
 #endif
 }
 
@@ -103,15 +108,13 @@ void eyou_parser_process(eyou *e, const char *buf, int len)
  * 使用xml字符串创建一个packet，并返回。
  * ！外部需要销毁packet
  *
+ * @e eyou_client
  * @xml  xmlstring
  * @return 成功返回指针，失败返回NULL
  */
-eyou_packet* make_packet(const char* xml, int xmllen)
+eyou_packet* make_packet(eyou* e, const char* xml, int xmllen)
 {
-	eyou_packet* p = new eyou_packet();
-	if (!p->from_string(xml, xmllen)) {
-		delete p;
-		return NULL;
-	}
+	eyou_packet* p = eyou_packet::make_packet_from_string(xml, xmllen);
+	p->_client = e;
 	return p;
 }

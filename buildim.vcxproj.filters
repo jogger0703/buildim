@@ -90,6 +90,9 @@
     <ClCompile Include="util\log.cpp">
       <Filter>util</Filter>
     </ClCompile>
+    <ClCompile Include="libim\status.cpp">
+      <Filter>libim</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="util\char_operation.h">
@@ -163,6 +166,9 @@
     </ClInclude>
     <ClInclude Include="util\log.h">
       <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="libim\status.h">
+      <Filter>libim</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
