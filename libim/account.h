@@ -28,7 +28,6 @@ public:
 	std::string		_gender;
 	std::string		_alias;
 	std::string		_password;
-	std::string		_userinfo;
 	std::string		_buddy_icon_path;
 	std::string		_protocal_name;
 

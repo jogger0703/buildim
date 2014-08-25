@@ -4,6 +4,7 @@
 #include <iostream>
 #include <hash_map>
 #include <string>
+#include <vector>
 
 
 #define ARRAY_COUNT(a) ((sizeof (a))/(sizeof (a[0])))
@@ -72,6 +73,7 @@ typedef struct
 typedef std::hash_map<std::string, void*> im_hash_table_string_void;
 typedef std::hash_map<int, void*> im_hash_table_int_void;
 typedef std::list<void*> im_list;
+typedef std::vector<void*> im_vector;
 
 
 #endif

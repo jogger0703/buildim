@@ -47,10 +47,15 @@ static void connect_cb(im_connection* conn) {
 	}
 }
 
+static void on_timer(im_connection* conn) {
+	
+}
+
 static im_connection_event_process event_proc = 
 {
 	connect_cb,
-	can_read
+	can_read,
+	on_timer
 };
 
 

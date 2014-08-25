@@ -8,11 +8,6 @@ class eyou_message : public eyou_packet
 public:
 	virtual ~eyou_message() {}
 
-	std::string		_from;
-	std::string		_to;
-	std::string		_time;
-	std::string		_body;
-
 	virtual void	process(void);
 };
 

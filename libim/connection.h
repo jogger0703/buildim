@@ -50,6 +50,7 @@ typedef struct
 {
 	void (*connect_cb)(im_connection* conn);
 	void (*can_read)(im_connection* conn);
+	void (*on_timer)(im_connection* conn);
 } im_connection_event_process;
 
 
@@ -68,6 +69,8 @@ public:
 
 	__int32				_fd;
 	
+	// libevent 计时器，可用于发送心跳包
+	struct event		*_timer;
 	// 读事件
 	struct event		*_re;
 	// 写事件
@@ -88,6 +91,8 @@ public:
 	im_connection_event_process* _events;
 	void				set_event_process(im_connection_event_process* proc);
 	im_connection_event_process* get_event_process(void);
+
+	void				set_keep_alive_idle(int second);
 
 	void				set_account(im_account* account);
 

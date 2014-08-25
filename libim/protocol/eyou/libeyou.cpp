@@ -11,6 +11,13 @@ static void can_read(im_connection* conn) {
 	eyou_read_socket(conn);
 }
 
+static void on_timer(im_connection* conn) {
+	if (conn->_state == LIBIM_CONNECTED) {
+		const char* keepalive = "<iq method=\"keepalive\" />";
+		conn->write(keepalive, strlen(keepalive));
+	}
+}
+
 static void connect_cb(im_connection* conn) {
 	eyou* e = (eyou*)conn->_proto_data;
 
@@ -28,7 +35,8 @@ static void connect_cb(im_connection* conn) {
 static im_connection_event_process event_proc = 
 {
 	connect_cb,
-	can_read
+	can_read,
+	on_timer
 };
 
 static void eyou_login(im_account* acc)

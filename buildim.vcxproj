@@ -103,6 +103,7 @@
     <ClCompile Include="util\config.cpp" />
     <ClCompile Include="util\exstring.cpp" />
     <ClCompile Include="util\log.cpp" />
+    <ClCompile Include="util\makeuuid.cpp" />
     <ClCompile Include="util\network.cpp" />
     <ClCompile Include="util\workq.cpp" />
   </ItemGroup>
@@ -129,6 +130,7 @@
     <ClInclude Include="util\error_process.h" />
     <ClInclude Include="util\exstring.h" />
     <ClInclude Include="util\log.h" />
+    <ClInclude Include="util\makeuuid.h" />
     <ClInclude Include="util\network.h" />
     <ClInclude Include="util\SimpleIni.h" />
     <ClInclude Include="util\workq.h" />

@@ -42,16 +42,7 @@ eyou_packet::~eyou_packet()
 
 std::string eyou_packet::to_string(void)
 {
-	xmlNodePtr root = xmlNewNode(NULL, BAD_CAST "iq");
-	if (!_method.empty())
-		xmlSetProp(root, (const xmlChar*)"method", (const xmlChar*)_method.c_str());
-	if (!_type.empty())
-		xmlSetProp(root, (const xmlChar*)"type", (const xmlChar*)_type.c_str());
-	if (!_id.empty())
-		xmlSetProp(root, (const xmlChar*)"id", (const xmlChar*)_id.c_str());
-
-
-	return xmlnode_to_string(root);
+	return xmlnode_to_string(_root);
 }
 
 bool eyou_packet::from_string(const char* xml, int xmllen)
@@ -75,6 +66,28 @@ bool eyou_packet::from_string(const char* xml, int xmllen)
 		_id = (const char*)xmlGetProp(root, (const xmlChar*)"id");
 
 	return true;
+}
+
+std::string eyou_packet::get_xmlnode_prop(xmlNodePtr node, const char* prop)
+{
+	if (xmlGetProp(node, (const xmlChar*)prop))
+		return (const char*)xmlGetProp(node, (const xmlChar*)prop);
+	return "";
+}
+std::string eyou_packet::get_xmlnode_value(xmlNodePtr node)
+{
+	return (const char*)xmlNodeGetContent(node);
+}
+
+xmlNodePtr eyou_packet::get_xmlnode_child_by_name(xmlNodePtr node, const char* child_name)
+{
+	xmlNodePtr it = node->children;
+	while (it != NULL) {
+		if (xmlStrcmp(it->name, (const xmlChar *)child_name) == 0)
+			return it;
+		it = it->next;
+	}
+	return NULL;
 }
 
 /**
@@ -111,12 +124,12 @@ eyou_packet* eyou_packet::make_packet_from_string(const char* xml, int xmllen)
 	p->_root = root;
 	p->_str = xml;
 	p->_name = (const char*)root->name;
-	if (xmlGetProp(root, (const xmlChar*)"method"))
-		p->_method = (const char*)xmlGetProp(root, (const xmlChar*)"method");
-	if (xmlGetProp(root, (const xmlChar*)"type"))
-		p->_type = (const char*)xmlGetProp(root, (const xmlChar*)"type");
-	if (xmlGetProp(root, (const xmlChar*)"id"))
-		p->_id = (const char*)xmlGetProp(root, (const xmlChar*)"id");
+	p->_method = get_xmlnode_prop(root, "method");
+	p->_type = get_xmlnode_prop(root, "type");
+	p->_id = get_xmlnode_prop(root, "id");
+	p->_from = get_xmlnode_prop(root, "from");
+	p->_to = get_xmlnode_prop(root, "to");
+	p->_time = get_xmlnode_prop(root, "time");
 
 	return p;
 }

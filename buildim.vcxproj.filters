@@ -93,6 +93,9 @@
     <ClCompile Include="libim\status.cpp">
       <Filter>libim</Filter>
     </ClCompile>
+    <ClCompile Include="util\makeuuid.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="util\char_operation.h">
@@ -169,6 +172,9 @@
     </ClInclude>
     <ClInclude Include="libim\status.h">
       <Filter>libim</Filter>
+    </ClInclude>
+    <ClInclude Include="util\makeuuid.h">
+      <Filter>util</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

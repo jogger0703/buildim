@@ -71,6 +71,9 @@ void eyou::set_auth_state(eyou_auth_state state)
 				_account->_gender.c_str());
 			eyou_write_plain(_conn, statepack.c_str(), statepack.length());
 
+			/* 设置心跳包触发计时器 */
+			_conn->set_keep_alive_idle(15);
+
 			set_auth_state(EYOU_STATE_POST_AUTH);
 		}
 		break;

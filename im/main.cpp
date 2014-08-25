@@ -47,6 +47,27 @@ static im_account_ui_ops account_ops =
 };
 
 //////////////////////////////////////////////////////////////////////////
+// conversation ui
+//////////////////////////////////////////////////////////////////////////
+
+void create_conversation(im_conversation* conv) {
+	
+}
+void destroy_conversation(im_conversation* conv) {
+	
+}
+void receive_message(im_conversation* conv, const char* who,
+	const char* content, im_message_flags flags, time_t mtime) {
+	DPRINT(LOG_WARING, "%s->%s:%s", who, conv->_account->_username.c_str(), content);
+}
+
+static im_conversation_ui_ops conv_ops = {
+	create_conversation,
+	destroy_conversation,
+	receive_message
+};
+
+//////////////////////////////////////////////////////////////////////////
 // main
 //////////////////////////////////////////////////////////////////////////
 
@@ -56,6 +77,7 @@ int main(int argc, char** argv)
 
 	im_connection::set_ui_ops(&conn_ops);
 	im_account::set_ui_ops(&account_ops);
+	im_conversation::set_ui_ops(&conv_ops);
 
 	im_account acc;
 	acc._protocal_name = "eyouim";

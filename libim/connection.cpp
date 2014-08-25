@@ -33,7 +33,13 @@ static void read_cb(evutil_socket_t sock, short flags, void * args)
 	if (conn->_events && conn->_events->can_read)
 		conn->_events->can_read(conn);
 }
-
+static void timer_cb(evutil_socket_t fd, short what, void *arg)
+{
+	im_connection* conn = (im_connection*)arg;
+	if (conn->_events && conn->_events->on_timer) {
+		conn->_events->on_timer(conn);
+	}
+}
 
 void im_connection::init()
 {
@@ -60,9 +66,20 @@ im_connection_event_process* im_connection::get_event_process(void) {
 	return _events;
 }
 
-
 void im_connection::set_account(im_account* account) {
 	_account = account;
+}
+
+/**
+ * 设置心跳包触发器
+ * @second 时间间隔，以秒为单位
+ */
+void im_connection::set_keep_alive_idle(int second)
+{
+	struct timeval idle = { second, 0 };
+
+	_timer = event_new(base, -1, EV_PERSIST, timer_cb, (void*)this);
+    event_add(_timer, &idle);
 }
 
 void im_connection::connect(const char* host, const char* serv)
