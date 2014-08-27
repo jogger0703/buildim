@@ -12,6 +12,10 @@ typedef struct
 {
 	void (*login)(im_account* acc);
 	void (*close)(im_connection* conn);
+
+	void (*connect_cb)(im_connection* conn);
+	void (*can_read)(im_connection* conn);
+	void (*on_timer)(im_connection* conn);
 } protocol_plugin_implement;
 
 

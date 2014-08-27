@@ -51,12 +51,12 @@ static void on_timer(im_connection* conn) {
 	
 }
 
-static im_connection_event_process event_proc = 
-{
-	connect_cb,
-	can_read,
-	on_timer
-};
+// static im_connection_event_process event_proc = 
+// {
+// 	connect_cb,
+// 	can_read,
+// 	on_timer
+// };
 
 
 
@@ -77,7 +77,7 @@ im_connection conn;
 void test_conn()
 {
 	im_connection::set_ui_ops(&ops);
-	conn.set_event_process(&event_proc);
+//	conn.set_event_process(&event_proc);
 	conn.connect("172.16.100.223", "7732");
 	
 	im_connection::dispatch();

@@ -80,10 +80,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="im\console.cpp" />
     <ClCompile Include="im\main.cpp" />
-    <ClCompile Include="im\mconn.cpp" />
     <ClCompile Include="libim\account.cpp" />
-    <ClCompile Include="libim\blist.cpp" />
+    <ClCompile Include="libim\buddy.cpp" />
     <ClCompile Include="libim\connection.cpp" />
     <ClCompile Include="libim\conversation.cpp" />
     <ClCompile Include="libim\core.cpp" />
@@ -108,9 +108,9 @@
     <ClCompile Include="util\workq.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="im\mconn.h" />
+    <ClInclude Include="im\console.h" />
     <ClInclude Include="libim\account.h" />
-    <ClInclude Include="libim\blist.h" />
+    <ClInclude Include="libim\buddy.h" />
     <ClInclude Include="libim\connection.h" />
     <ClInclude Include="libim\conversation.h" />
     <ClInclude Include="libim\core.h" />

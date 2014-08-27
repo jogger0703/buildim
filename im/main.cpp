@@ -1,10 +1,14 @@
 #include <stdio.h>
 #include "libim/core.h"
 #include "mconn.h"
+#include "console.h"
 #include "util/error_process.h"
 #include "util/config.h"
 #include "util/exstring.h"
 #include "util/log.h"
+
+
+win_console console;
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -71,23 +75,76 @@ static im_conversation_ui_ops conv_ops = {
 // main
 //////////////////////////////////////////////////////////////////////////
 
+im_account _account;
+
+
+static void login()
+{
+	_account.connect_server();
+}
+static void logout()
+{
+	if (_account.is_connected())
+		_account.disconnect();
+}
+
+static void show_roster()
+{
+	
+}
+
+static void print_help();
+
+struct command_list_st {
+	const char* cmd;
+	const char* description;
+	void (*func)(void);
+} cmd_list[] = {
+	{"login", "connect and auth to server", login},
+	{"roster", "show roster", show_roster},
+	{"?", "output help information", print_help},
+	{"help", "output help information", print_help},
+	{"q", "quit", logout},
+};
+
+void print_help()
+{
+	for (int i=0; i<ARRAY_COUNT(cmd_list); i++) {
+		DPRINT(LOG_WARING, "%10s : %s", cmd_list[i].cmd, cmd_list[i].description);
+	}
+}
+
+static void command_process(const char* cmd)
+{
+	for (int i=0; i<ARRAY_COUNT(cmd_list); i++) {
+		if (strcmp(cmd, cmd_list[i].cmd) == 0) {
+			if (cmd_list[i].func != NULL)
+				cmd_list[i].func();
+			else
+				DPRINT(LOG_ERROR, "un implement command!");
+
+			return ;
+		}
+	}
+	DPRINT(LOG_ERROR, "unknown command!");
+}
+
 int main(int argc, char** argv)
 {
 	g_im_core.init();
+
 
 	im_connection::set_ui_ops(&conn_ops);
 	im_account::set_ui_ops(&account_ops);
 	im_conversation::set_ui_ops(&conv_ops);
 
-	im_account acc;
-	acc._protocal_name = "eyouim";
-	acc._username = "im@eyou.net";
-	acc._password = "WmhhbmdodWE1Mjg2MjU=";
-	acc.connect_server();
+	_account._protocal_name = "eyouim";
+	_account._username = "im@eyou.net";
+	_account._password = "WmhhbmdodWE1Mjg2MjU=";
 
-	while (1) {
-		Sleep(100);
-	}
+	console.set_process_cb(command_process);
+	console.run_loop();
+
 	g_im_core.quit();
 	return 0;
 }

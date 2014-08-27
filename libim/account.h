@@ -4,9 +4,11 @@
 #include "value.h"
 #include "status.h"
 #include "util/config.h"
+#include "protocol_plugin.h"
 
 class im_connection;
 class im_account;
+class im_buddy_node;
 
 typedef struct
 {
@@ -21,7 +23,12 @@ class im_account
 	im_connection*	_connection;
 	im_status		_current_status;
 
+	/* 好友列表根节点 */
+	im_buddy_node*	_roster;
+	/* 组织架构根节点，也可能是qq的群 */
+	im_buddy_node*	_structure;
 public:
+	protocol_plugin_implement* _imp;
 	std::string		_username;
 	std::string		_mood;
 	std::string		_avatar;
@@ -30,14 +37,13 @@ public:
 	std::string		_password;
 	std::string		_buddy_icon_path;
 	std::string		_protocal_name;
-
 	
 
 	bool			_remember_pass;
 	hash_config		_settings;
 
-	static void			init(void);
-	static void			uninit(void);
+	static void		init(void);
+	static void		uninit(void);
 
 	static void		set_ui_ops(im_account_ui_ops*);
 	static im_account_ui_ops* get_ui_ops(void);
@@ -53,14 +59,6 @@ public:
 
 	void			connect_server();
 	void			disconnect();
-	// settings
-	// 这些函数直接访问成员变量settings.get_string set_string ...
-// 	std::string		get_conf_string(const char* name, const char* default_value);
-// 	int				get_conf_int(const char* name, int default_value);
-// 	bool			get_conf_bool(const char* name, bool default_value);
-// 	void			set_conf_string(const char* name, const char* value);
-// 	void			set_conf_int(const char* name, int value);
-// 	void			set_conf_bool(const char* name, bool value);
 };
 
 

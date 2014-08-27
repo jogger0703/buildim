@@ -14,6 +14,17 @@ im_account_ui_ops* im_account::get_ui_ops(void)
 	return _ops;
 }
 
+bool im_account::is_connected() {
+	return _connection && (_connection->_state == LIBIM_CONNECTED);
+}
+bool im_account::is_connecting() {
+	return _connection && (_connection->_state == LIBIM_CONNECTING);
+}
+bool im_account::is_disconnected() {
+	return (_connection == NULL) || (_connection->_state == LIBIM_DISCONNECTED);
+}
+
+
 void im_account::disconnect()
 {
 	_connection->disconnect();
@@ -23,8 +34,8 @@ void im_account::disconnect()
 
 void im_account::connect_server()
 {
-	protocol_plugin_implement* imp = protocol_plugin::find_plugin(_protocal_name.c_str());
-	if (!imp) {
+	_imp = protocol_plugin::find_plugin(_protocal_name.c_str());
+	if (!_imp) {
 		error_quit("Missing protocol plugin!");
 		return;
 	}
@@ -40,5 +51,5 @@ void im_account::connect_server()
 	conn->_account = this;
 	_connection = conn;
 
-	imp->login(this);
+	_imp->login(this);
 }

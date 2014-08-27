@@ -46,13 +46,6 @@ typedef struct
 	void (*network_error)(im_connection* conn, int err);
 } im_connection_ui_ops;
 
-typedef struct
-{
-	void (*connect_cb)(im_connection* conn);
-	void (*can_read)(im_connection* conn);
-	void (*on_timer)(im_connection* conn);
-} im_connection_event_process;
-
 
 class im_connection
 {
@@ -85,12 +78,6 @@ public:
 
 	static void			set_ui_ops(im_connection_ui_ops* ops);
 	static im_connection_ui_ops* get_ui_ops(void);
-
-	// connection的事件回调，当套接字有读写事件的时候，会回调相关函数
-	// 一般理解为，ui_ops是UI实现的。eventprocess是协议关心的
-	im_connection_event_process* _events;
-	void				set_event_process(im_connection_event_process* proc);
-	im_connection_event_process* get_event_process(void);
 
 	void				set_keep_alive_idle(int second);
 

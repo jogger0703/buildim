@@ -62,6 +62,8 @@ public:
 	/* 存储了conversation在生存期内的消息记录 im_conversation_message */
 	im_list				_history;
 
+	void				send_message(const char* who, const char* content, im_message_flags flags, time_t mtime);
+
 	static void			init();
 	static void			uninit();
 

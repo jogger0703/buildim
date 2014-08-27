@@ -10,7 +10,7 @@ void eyou_message::process(void)
 	}
 	else if (_type == "chat") {
 		if (_from.empty()) {
-			DPRINT(LOG_ERROR, "message unknown source!(%s)", _str.c_str());
+			DPRINT(LOG_ERROR, "chat message unknown source!(%s)", _str.c_str());
 		}
 		
 		im_conversation* conv = 

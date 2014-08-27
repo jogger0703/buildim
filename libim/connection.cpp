@@ -6,6 +6,7 @@
 #include "event2/util.h"
 #include "event2/event.h"
 #include "util/workq.h"
+#include "account.h"
 
 #pragma comment(lib, "libevent.lib")
 #pragma comment(lib, "libevent_core.lib")
@@ -30,14 +31,15 @@ static void write_cb(evutil_socket_t sock, short flags, void * args)
 static void read_cb(evutil_socket_t sock, short flags, void * args)
 {
 	im_connection* conn = (im_connection*)args;
-	if (conn->_events && conn->_events->can_read)
-		conn->_events->can_read(conn);
+	
+	if (conn->_account->_imp && conn->_account->_imp->can_read)
+		conn->_account->_imp->can_read(conn);
 }
 static void timer_cb(evutil_socket_t fd, short what, void *arg)
 {
 	im_connection* conn = (im_connection*)arg;
-	if (conn->_events && conn->_events->on_timer) {
-		conn->_events->on_timer(conn);
+	if (conn->_account->_imp && conn->_account->_imp->on_timer) {
+		conn->_account->_imp->on_timer(conn);
 	}
 }
 
@@ -57,13 +59,6 @@ void im_connection::set_ui_ops(im_connection_ui_ops* ops) {
 }
 im_connection_ui_ops* im_connection::get_ui_ops(void) {
 	return _ops;
-}
-
-void im_connection::set_event_process(im_connection_event_process* proc) {
-	_events = proc;
-}
-im_connection_event_process* im_connection::get_event_process(void) {
-	return _events;
 }
 
 void im_connection::set_account(im_account* account) {
@@ -106,8 +101,8 @@ void im_connection::connect(const char* host, const char* serv)
 	_in = evbuffer_new();
 	_out = evbuffer_new();
 
-	if (_events->connect_cb)
-		_events->connect_cb(this);
+	if (_account->_imp->connect_cb)
+		_account->_imp->connect_cb(this);
 
 	if (_ops->network_connected)
 		_ops->network_connected(this);
@@ -120,8 +115,8 @@ void im_connection::disconnect(void)
 	evbuffer_free(_out);
 	if (_ops->network_disconnected)
 		_ops->network_disconnected(this);
-	if (_events->connect_cb)
-		_events->connect_cb(this);
+	if (_account->_imp->connect_cb)
+		_account->_imp->connect_cb(this);
 }
 
 /** 

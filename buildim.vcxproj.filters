@@ -27,9 +27,6 @@
     <ClCompile Include="libim\account.cpp">
       <Filter>libim</Filter>
     </ClCompile>
-    <ClCompile Include="libim\blist.cpp">
-      <Filter>libim</Filter>
-    </ClCompile>
     <ClCompile Include="libim\connection.cpp">
       <Filter>libim</Filter>
     </ClCompile>
@@ -46,9 +43,6 @@
       <Filter>libim</Filter>
     </ClCompile>
     <ClCompile Include="im\main.cpp">
-      <Filter>im</Filter>
-    </ClCompile>
-    <ClCompile Include="im\mconn.cpp">
       <Filter>im</Filter>
     </ClCompile>
     <ClCompile Include="util\workq.cpp">
@@ -96,6 +90,12 @@
     <ClCompile Include="util\makeuuid.cpp">
       <Filter>util</Filter>
     </ClCompile>
+    <ClCompile Include="libim\buddy.cpp">
+      <Filter>libim</Filter>
+    </ClCompile>
+    <ClCompile Include="im\console.cpp">
+      <Filter>im</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="util\char_operation.h">
@@ -105,9 +105,6 @@
       <Filter>util</Filter>
     </ClInclude>
     <ClInclude Include="libim\account.h">
-      <Filter>libim</Filter>
-    </ClInclude>
-    <ClInclude Include="libim\blist.h">
       <Filter>libim</Filter>
     </ClInclude>
     <ClInclude Include="libim\connection.h">
@@ -127,9 +124,6 @@
     </ClInclude>
     <ClInclude Include="util\error_process.h">
       <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="im\mconn.h">
-      <Filter>im</Filter>
     </ClInclude>
     <ClInclude Include="util\workq.h">
       <Filter>util</Filter>
@@ -175,6 +169,12 @@
     </ClInclude>
     <ClInclude Include="util\makeuuid.h">
       <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="libim\buddy.h">
+      <Filter>libim</Filter>
+    </ClInclude>
+    <ClInclude Include="im\console.h">
+      <Filter>im</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -19,14 +19,15 @@ class Log
 	bool				m_detail;
 public:
 	bool init(const char* path, log_level max_level, bool clr, bool pref_detail);
-	void write_line(log_level level, const char* file, int line, char* format, ...);
+	void write_line(log_level level, const char* file, int line, bool endline, char* format, ...);
 };
 
 
 extern Log _mylog;
 
 #define DPRINT_INIT(path, level, clr, detail) (_mylog.init(path, level, clr, detail))
-#define DPRINT(level, format, ...) (_mylog.write_line(level, __FILE__, __LINE__, format, ## __VA_ARGS__))
+#define DPRINT(level, format, ...) (_mylog.write_line(level, __FILE__, __LINE__, true, format, ## __VA_ARGS__))
+#define DPRINT_NOENDL(level, format, ...) (_mylog.write_line(level, __FILE__, __LINE__, false, format, ## __VA_ARGS__))
 
 
 #endif

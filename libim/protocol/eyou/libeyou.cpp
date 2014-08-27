@@ -32,13 +32,6 @@ static void connect_cb(im_connection* conn) {
 	}
 }
 
-static im_connection_event_process event_proc = 
-{
-	connect_cb,
-	can_read,
-	on_timer
-};
-
 static void eyou_login(im_account* acc)
 {
 	im_connection* conn = acc->get_connection();
@@ -47,8 +40,6 @@ static void eyou_login(im_account* acc)
 	conn->_proto_data = e;
 	e->_account = acc;
 	e->_conn = acc->get_connection();
-
-	conn->set_event_process(&event_proc);
 
 	conn->connect(acc->_settings.get_string("serverhost", "ims1.eyou.net").c_str(),
 				acc->_settings.get_string("serverport", "8100").c_str());
@@ -65,7 +56,11 @@ static void eyou_logout(im_connection* conn)
 static protocol_plugin_implement imp =
 {
 	eyou_login,
-	eyou_logout
+	eyou_logout,
+
+	connect_cb,
+	can_read,
+	on_timer
 };
 
 static void init_plugin()

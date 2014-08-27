@@ -4,7 +4,6 @@
 #include "value.h"
 #include "account.h"
 #include "connection.h"
-#include "blist.h"
 #include "conversation.h"
 #include "signal.h"
 #include "log.h"

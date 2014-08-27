@@ -29,7 +29,7 @@ bool Log::init(const char* path, log_level max_level, bool clr, bool pref_detail
 	return true;
 }
 
-void Log::write_line(log_level level, const char* file, int line, char* format, ...)
+void Log::write_line(log_level level, const char* file, int line, bool endline, char* format, ...)
 {
 	time_t		now;
 	struct tm	t;
@@ -65,7 +65,7 @@ void Log::write_line(log_level level, const char* file, int line, char* format, 
 		if (level == LOG_WARING)
 			flags = FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_INTENSITY;
 		if (level == LOG_INFO)
-			flags = FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
+			flags = FOREGROUND_GREEN | FOREGROUND_INTENSITY;
 
 		SetConsoleTextAttribute(hConsole, flags);
 	}
@@ -87,7 +87,8 @@ void Log::write_line(log_level level, const char* file, int line, char* format, 
 #endif
 	}
 	fprintf_s(m_file, buf);
-	fprintf_s(m_file, "\r\n");
+	if (endline)
+		fprintf_s(m_file, "\n");
 	_fflush_nolock(m_file);
 	_unlock_file(m_file);
 }
