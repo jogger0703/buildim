@@ -1,5 +1,6 @@
 #include "io.h"
 #include "parser.h"
+#include "char_operation.h"
 
 
 typedef struct {
@@ -26,7 +27,10 @@ void eyou_write_packet(im_connection* conn, eyou_packet* pack)
 void eyou_write_plain(im_connection* conn, const char* text, int len)
 {
 	eyou_write_head(conn, len);
-	conn->write(text, len);
+
+	/* 服务器收发的字符集都是utf8 */
+	std::string utf8 = ansi2utf8(text, len);
+	conn->write(utf8.c_str(), utf8.length());
 }
 
 void eyou_read_socket(im_connection* conn)
@@ -44,6 +48,17 @@ void eyou_read_socket(im_connection* conn)
 	char* buf = new char[h.pack_len + 1];
 	conn->read(buf, h.pack_len);
 	buf[h.pack_len] = '\0';
-	eyou_parser_process((eyou*)conn->_proto_data, buf, h.pack_len);
+
+	/* 服务器收发的字符集都是utf8 */
+	//std::string mbcs = utf82ansi(buf, h.pack_len);
+	std::string mbcs = buf;
+
+	/* 需要告诉解析器xml是用iso-8859-1编码，否则会以默认的utf8编码处理 */
+	//ISO-8859-1
+	//Windows-1252
+	std::string full_xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
+	full_xml += mbcs;
 	delete []buf;
+
+	eyou_parser_process((eyou*)conn->_proto_data, full_xml.c_str(), full_xml.length());
 }

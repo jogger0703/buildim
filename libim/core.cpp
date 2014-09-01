@@ -2,6 +2,7 @@
 #include "signal.h"
 #include "connection.h"
 #include "protocol_plugin.h"
+#include "buddy.h"
 #include "../util/network.h"
 
 im_core g_im_core;
@@ -11,6 +12,7 @@ bool im_core::init()
 	winsock_init();
 	im_connection::init();
 	protocol_plugin::init();
+	im_buddy_init();
 	
 	/* NULL代表将调试信息打印到标准输出
 	 * 标准输出是给用户看的，不需要打印行号等详细信息

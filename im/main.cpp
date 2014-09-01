@@ -2,6 +2,7 @@
 #include "libim/core.h"
 #include "mconn.h"
 #include "console.h"
+#include "buddy.h"
 #include "util/error_process.h"
 #include "util/config.h"
 #include "util/exstring.h"
@@ -90,7 +91,22 @@ static void logout()
 
 static void show_roster()
 {
-	
+	im_buddy_node* roster = im_buddy_get_roster();
+	if (!roster) {
+		DPRINT(LOG_ERROR, "get roster failed!");
+		return;
+	}
+	im_group* g = (im_group*)roster->get_first_child();
+	while (g) {
+		DPRINT(LOG_WARING, "group=%s", g->_name.c_str());
+		im_buddy* b = (im_buddy*)g->get_first_child();
+		while (b) {
+			DPRINT(LOG_WARING, "member=%s", b->_uid.c_str());
+			b = (im_buddy*)b->get_next();
+		}
+
+		g = (im_group*)g->get_next();
+	}
 }
 
 static void print_help();
@@ -129,8 +145,19 @@ static void command_process(const char* cmd)
 	DPRINT(LOG_ERROR, "unknown command!");
 }
 
+#include <libxml/tree.h>
 int main(int argc, char** argv)
 {
+// 	xmlDocPtr doc = NULL;
+// 	xmlNodePtr root = NULL;
+// 
+// 	char buf[10000] = {0};
+// 	FILE* f = fopen("b.xml", "r");
+// 	int len = fread(buf, 1, 10000, f);
+// 
+// 	if ((doc = xmlParseMemory(buf, 10000)) == NULL)
+// 		return NULL;
+
 	g_im_core.init();
 
 

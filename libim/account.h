@@ -23,11 +23,8 @@ class im_account
 	im_connection*	_connection;
 	im_status		_current_status;
 
-	/* 好友列表根节点 */
-	im_buddy_node*	_roster;
-	/* 组织架构根节点，也可能是qq的群 */
-	im_buddy_node*	_structure;
 public:
+
 	protocol_plugin_implement* _imp;
 	std::string		_username;
 	std::string		_mood;

@@ -1,31 +1,15 @@
 #ifndef ___CHAR_OPERATION__H__
 #define ___CHAR_OPERATION__H__
 
-#ifdef __cplusplus
-extern "C"{
-#endif
+#include <iostream>
+#include <string>
 
-// wchar_t * utf8_dup_unicode(const char* src)
-// {
-// 	int nchar;
-// 	wchar_t* buf = NULL;
-// 
-// 	nchar = MultiByteToWideChar(CP_UTF8, 0, src, -1, NULL, 0);
-// 	buf = (wchar_t*)malloc(nchar*sizeof(wchar_t[0]));
-// 	if (!buf) return NULL;
-// 
-// 	nchar = MultiByteToWideChar(CP_UTF8, 0, src, -1, NULL, nchar);
-// 	if (nchar == 0) {
-// 		free(buf);
-// 		buf = NULL;
-// 	}
-// 	return buf;
+std::string unicode2utf8(const char* src, int len);
 
-// 	return 0;
-// }
+std::wstring ansi2unicode(const char* src, int len);
+std::string unicode2ansi(const wchar_t* src, int len);
 
-#ifdef __cplusplus
-}
-#endif
+std::string utf82ansi(const char* src, int len);
+std::string ansi2utf8(const char* src, int len);
 
 #endif //___CHAR_OPERATION__H__

@@ -71,7 +71,12 @@ void eyou::set_auth_state(eyou_auth_state state)
 				_account->_gender.c_str());
 			eyou_write_plain(_conn, statepack.c_str(), statepack.length());
 
-			
+			/* 获取roster */
+			std::string roster_request;
+			roster_request = string_format("<iq method=\"roster\" type=\"get\" id=\"103\"/>");
+			eyou_write_plain(_conn, roster_request.c_str(), roster_request.length());
+
+			/* 获取eyou组织架构 */
 
 			/* 设置心跳包触发计时器 */
 			_conn->set_keep_alive_idle(15);

@@ -95,6 +95,7 @@
     <ClCompile Include="libim\protocol\eyou\packet.cpp" />
     <ClCompile Include="libim\protocol\eyou\parser.cpp" />
     <ClCompile Include="libim\protocol\eyou\presence.cpp" />
+    <ClCompile Include="libim\protocol\eyou\roster.cpp" />
     <ClCompile Include="libim\protocol_plugin.cpp" />
     <ClCompile Include="libim\signal.cpp" />
     <ClCompile Include="libim\status.cpp" />
@@ -106,6 +107,7 @@
     <ClCompile Include="util\makeuuid.cpp" />
     <ClCompile Include="util\network.cpp" />
     <ClCompile Include="util\workq.cpp" />
+    <ClCompile Include="util\xmlnode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="im\console.h" />
@@ -121,6 +123,7 @@
     <ClInclude Include="libim\protocol\eyou\packet.h" />
     <ClInclude Include="libim\protocol\eyou\parser.h" />
     <ClInclude Include="libim\protocol\eyou\presence.h" />
+    <ClInclude Include="libim\protocol\eyou\roster.h" />
     <ClInclude Include="libim\protocol_plugin.h" />
     <ClInclude Include="libim\signal.h" />
     <ClInclude Include="libim\status.h" />
@@ -134,6 +137,7 @@
     <ClInclude Include="util\network.h" />
     <ClInclude Include="util\SimpleIni.h" />
     <ClInclude Include="util\workq.h" />
+    <ClInclude Include="util\xmlnode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

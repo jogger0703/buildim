@@ -96,6 +96,12 @@
     <ClCompile Include="im\console.cpp">
       <Filter>im</Filter>
     </ClCompile>
+    <ClCompile Include="libim\protocol\eyou\roster.cpp">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClCompile>
+    <ClCompile Include="util\xmlnode.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="util\char_operation.h">
@@ -175,6 +181,12 @@
     </ClInclude>
     <ClInclude Include="im\console.h">
       <Filter>im</Filter>
+    </ClInclude>
+    <ClInclude Include="libim\protocol\eyou\roster.h">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClInclude>
+    <ClInclude Include="util\xmlnode.h">
+      <Filter>util</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
