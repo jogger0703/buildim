@@ -34,7 +34,7 @@ im_buddy_node* parse_roster_from_xml(im_buddy_node* buddy_root, const char* xml)
 		xmlNodePtr item = xmlnode_get_child_by_name(group, "item");
 		while (item) {
 			im_contact* buddy = new im_contact();
-			buddy->_uid = xmlnode_get_prop(item, "uid");
+			buddy->_id = xmlnode_get_prop(item, "uid");
 			buddy->_name = xmlnode_get_prop(item, "realname");
 			buddy->_alias = xmlnode_get_prop(item, "name");
 

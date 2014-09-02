@@ -2,11 +2,13 @@
 #define ___LIBIM_PROTOCOL_PLUGIN__H__
 
 #include "value.h"
+#include "conversation.h"
 
 class im_account;
 class im_connection;
 class protocol_plugin;
 class protocol_plugin_register;
+class im_conversation;
 
 typedef struct
 {
@@ -16,6 +18,8 @@ typedef struct
 	void (*connect_cb)(im_connection* conn);
 	void (*can_read)(im_connection* conn);
 	void (*on_timer)(im_connection* conn);
+
+	void (*send_chat)(im_conversation* conv, const char* who, const char* content, im_message_flags flags, time_t mtime);
 } protocol_plugin_implement;
 
 

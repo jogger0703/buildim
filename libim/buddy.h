@@ -39,8 +39,12 @@ class im_buddy_node
 	im_buddy_node*		_parent;
 
 	hash_config*		_settings;
+
 public:
+	int					_level;
 	im_buddy_node_type	_type;
+	/* 用户id 或者组id */
+	std::string			_id;
 
 	im_buddy_node();
 	virtual ~im_buddy_node() {}
@@ -52,6 +56,8 @@ public:
 	im_buddy_node*		get_next(void);
 	im_buddy_node_type	get_type(void);
 
+	im_buddy_node*		find_child(const char* uid);
+
 	void				clear_children(void);
 };
 
@@ -61,10 +67,12 @@ public:
 class im_buddy : public im_buddy_node
 {
 public:
-	im_buddy() {_type = LIBIM_BUDDY_NODE_BUDDY;}
+	im_buddy() {
+		_type = LIBIM_BUDDY_NODE_BUDDY;
+		_status = LIBIM_STATUS_OFFLINE;
+	}
 	virtual ~im_buddy() {}
 
-	std::string			_uid; // user id
 	std::string			_name;
 	std::string			_alias;
 	im_status			_status;
@@ -94,10 +102,12 @@ public:
 class im_contact : public im_buddy_node
 {
 public:
-	im_contact() {_type = LIBIM_BUDDY_NODE_CONTACT;}
+	im_contact() {
+		_type = LIBIM_BUDDY_NODE_CONTACT;
+		_status = LIBIM_STATUS_OFFLINE;
+	}
 	virtual ~im_contact() {}
 
-	std::string			_uid; // user id
 	std::string			_name;
 	std::string			_alias;
 	im_status			_status;

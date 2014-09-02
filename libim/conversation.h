@@ -2,11 +2,11 @@
 #define ___LIBIM_CONVERSATION__H__
 
 #include "value.h"
-#include "account.h"
-#include "connection.h"
 
+class im_connection;
 class im_conversation;
 class im_account;
+class im_buddy_node;
 
 typedef enum 
 {
@@ -62,7 +62,10 @@ public:
 	/* 存储了conversation在生存期内的消息记录 im_conversation_message */
 	im_list				_history;
 
-	void				send_message(const char* who, const char* content, im_message_flags flags, time_t mtime);
+	void				send_chat(const char* who, const char* content, im_message_flags flags, time_t mtime);
+
+	bool				add_member_by_id(const char* userid);
+	void				add_member(im_buddy_node* buddy);
 
 	static void			init();
 	static void			uninit();

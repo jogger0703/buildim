@@ -11,6 +11,7 @@ static im_buddy_ui_ops* _ops = NULL;
 void im_buddy_init()
 {
 	_roster = new im_buddy_node();
+	_roster->_level = 0;
 }
 void im_buddy_uninit()
 {
@@ -37,23 +38,29 @@ im_buddy_node* im_buddy_get_roster(void) {
 im_buddy_node::im_buddy_node()
 {
 	_next = _parent = _children = NULL;
+	_settings = NULL;
+	/* 虚根节点没有类型 */
+	_type = LIBIM_BUDDY_NODE_NONE;
+	_uidata = NULL;
+
+	_level = 0;
 }
 
 void im_buddy_node::add_child(im_buddy_node* node)
 {
 	if (!_children) {
 		_children = node;
-		return;
+	}
+	else {
+		im_buddy_node* last_child = _children;
+
+		while (last_child && last_child->_next)
+			last_child = last_child->_next;
+		last_child->_next = node;
 	}
 
-	im_buddy_node* last_child = _children;
-
-	while (last_child && last_child->_next)
-		last_child = last_child->_next;
-
 	node->_parent = this;
-
-	last_child->_next = node;
+	node->_level = _level+1;
 }
 
 void im_buddy_node::clear_children(void)
@@ -66,6 +73,25 @@ void im_buddy_node::clear_children(void)
 		child = child->get_next();
 		delete tmp;
 	}
+}
+
+im_buddy_node* im_buddy_node::find_child(const char* uid)
+{
+	im_buddy_node* ret = NULL;
+	im_buddy_node* child = _children;
+	while (child) {
+		if (child->_id == uid) {
+			ret = child;
+			break;
+		}
+
+		ret = child->find_child(uid);
+		if (ret == NULL)
+			child = child->get_next();
+		else
+			break;
+	}
+	return ret;
 }
 
 im_buddy_node* im_buddy_node::get_first_child(void) {

@@ -5,6 +5,7 @@
 #include "exstring.h"
 #include "iq.h"
 #include "io.h"
+#include "message.h"
 #include <windows.h>
 
 static void can_read(im_connection* conn) {
@@ -60,7 +61,9 @@ static protocol_plugin_implement imp =
 
 	connect_cb,
 	can_read,
-	on_timer
+	on_timer,
+
+	eyou_message::send_chat,
 };
 
 static void init_plugin()

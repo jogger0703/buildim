@@ -1,5 +1,8 @@
 #include "conversation.h"
 #include "makeuuid.h"
+#include "account.h"
+#include "buddy.h"
+#include <time.h>
 
 
 static im_conversation_ui_ops* _ops;
@@ -31,6 +34,10 @@ void im_conversation::uninit()
  * @conv_name 会话名字，具有唯一性
  * @type 会话类型
  * 成功返回对象指针，失败返回NULL
+ *
+ * PS:这个函数有可能被界面调用。也有可能被网络层调用
+ * 当用户主动选择好友聊天时，界面层，调用。
+ * 当网络消息过来时，网络层调用。
  */
 im_conversation* im_conversation::make_conversation(im_account* acc, const char* conv_name, im_conversation_type type)
 {
@@ -68,25 +75,44 @@ void im_conversation::remove_conversation(im_conversation* conv)
 	 _converstations.erase(k);
 }
 
+/**
+ * 发送消息
+ * @who，发送者id
+ * @content，消息内容
+ * @im_message_flags，消息标志
+ * @mtime，发送时间，如果为0，则按系统时间发送
+ */
+void im_conversation::send_chat(const char* who, const char* content, im_message_flags flags, time_t mtime)
+{
+	if (mtime == 0)
+		mtime = time(NULL);
 
-// void im_conversation::add_cache(im_conversation* conv)
-// {
-// 	_conversations.push_back((void*)conv);
-// }
-// void im_conversation::remove_cache(im_conversation* conv)
-// {
-// 	
-// }
-// im_conversation* im_conversation::find_cache(im_account* account, const char* name)
-// {
-// 	for (auto it=_conversations.begin(); it!=_conversations.end(); it++) {
-// 		im_conversation* c = (im_conversation*)&it;
-// 		if (c->_account == account && c->_name == name)
-// 			return c;
-// 	}
-// 
-// 	return NULL;
-// }
+	if (_account->_imp->send_chat)
+		_account->_imp->send_chat(this, who, content, flags, mtime);
+}
+
+/**
+ * 通过id添加聊天对象。
+ * 先在roster中查找，后在组织架构中查找（如果有的话）
+ * 成功返回true 失败返回false
+ */
+bool im_conversation::add_member_by_id(const char* userid)
+{
+	im_buddy_node* b = im_buddy_get_roster()->find_child(userid);
+	if (!b)
+		return false;
+	add_member(b);
+	return true;
+}
+
+/**
+ * 添加聊天对象。
+ * 不管单人还是多人的conversation，此处只管添加。
+ */
+void im_conversation::add_member(im_buddy_node* buddy)
+{
+	_members.push_back(buddy);
+}
 
 void im_conversation::set_ui_ops(im_conversation_ui_ops* ops) {
 	_ops = ops;

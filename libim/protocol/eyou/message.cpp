@@ -3,6 +3,8 @@
 #include "eyou.h"
 #include <time.h>
 #include "char_operation.h"
+#include "buddy.h"
+#include "io.h"
 
 void eyou_message::process(void)
 {
@@ -25,4 +27,21 @@ void eyou_message::process(void)
 
 		conv->get_ui_ops()->receive_message(conv, _from.c_str(), content.c_str(), LIBIM_MESSAGE_RECV, time);
 	}
+}
+
+void eyou_message::send_chat(im_conversation* conv, const char* who, const char* content, im_message_flags flags, time_t mtime)
+{
+	im_buddy* b = (im_buddy*)conv->_members.front();
+	std::string xml = string_format(
+		"<message to=\"%s\" type=\"chat\" from=\"%s\" time=\"%I64d\">"\
+		"<body color=\"0\" height=\"-13\" width=\"0\" escp=\"0\" "\
+		"ort=\"0\" weight=\"400\" charset=\"0\" facename=\"&#x5FAE;&#x8F6F;&#x96C5;&#x9ED1;\" "\
+		"italic=\"false\" strikeout=\"false\" underline=\"false\">"\
+		"<![CDATA[%s]]></body></message>",
+		b->_id.c_str(),
+		who,
+		mtime,
+		content);
+
+	eyou_write_plain(conv->_account->get_connection(), xml.c_str(), xml.length());
 }

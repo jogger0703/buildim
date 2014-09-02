@@ -9,6 +9,8 @@ public:
 	virtual ~eyou_message() {}
 
 	virtual void	process(void);
+
+	static void		send_chat(im_conversation* conv, const char* who, const char* content, im_message_flags flags, time_t mtime);
 };
 
 
