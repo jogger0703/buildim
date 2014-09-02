@@ -5,6 +5,7 @@
 #include "buddy.h"
 #include <Windows.h>
 #include <time.h>
+#include "util/char_operation.h"
 #include "util/error_process.h"
 #include "util/config.h"
 #include "util/exstring.h"
@@ -65,7 +66,7 @@ void destroy_conversation(im_conversation* conv) {
 }
 void receive_message(im_conversation* conv, const char* who,
 	const char* content, im_message_flags flags, time_t mtime) {
-	DPRINT(LOG_WARING, "%s->%s:%s", who, conv->_account->_username.c_str(), content);
+	DPRINT(LOG_WARING, "%s->%s:%s", who, conv->_account->_username.c_str(), utf82ansi(content, strlen(content)).c_str());
 }
 
 static im_conversation_ui_ops conv_ops = {
@@ -165,7 +166,7 @@ static void command_process(const char* line)
 	}
 
 
-	for (int i=0; i<ARRAY_COUNT(cmd_list); i++) {
+	for (i=0; i<ARRAY_COUNT(cmd_list); i++) {
 		if (strcmp(arg[0], cmd_list[i].cmd) == 0) {
 			if (cmd_list[i].func != NULL) {
 				cmd_list[i].func(arg);
@@ -180,7 +181,7 @@ static void command_process(const char* line)
 	if (i >= ARRAY_COUNT(cmd_list))
 		DPRINT(LOG_ERROR, "unknown command!");
 
-	for (int i=0; i<5; i++)
+	for (int i=0; i<ARRAY_COUNT(arg); i++)
 		if (arg[i]) delete arg[i];
 	delete []src;
 }
@@ -188,17 +189,6 @@ static void command_process(const char* line)
 #include <libxml/tree.h>
 int main(int argc, char** argv)
 {
-	std::string xml = string_format(
-		"<message to=\"%s\" type=\"chat\" from=\"%s\" time=\"%d\">"\
-		"<body color=\"0\" height=\"-13\" width=\"0\" escp=\"0\" "\
-		"ort=\"0\" weight=\"400\" charset=\"0\" facename=\"&#x5FAE;&#x8F6F;&#x96C5;&#x9ED1;\" "\
-		"italic=\"false\" strikeout=\"false\" underline=\"false\">"\
-		"<![CDATA[%s]]></body></message>",
-		"shenjiacheng@eyou.net",
-		"im@eyou.net",
-		0,
-		"hello");
-
 // 	xmlDocPtr doc = NULL;
 // 	xmlNodePtr root = NULL;
 // 

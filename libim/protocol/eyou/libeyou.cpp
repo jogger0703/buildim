@@ -44,8 +44,6 @@ static void eyou_login(im_account* acc)
 
 	conn->connect(acc->_settings.get_string("serverhost", "ims1.eyou.net").c_str(),
 				acc->_settings.get_string("serverport", "8100").c_str());
-
-	conn->dispatch();
 }
 
 static void eyou_logout(im_connection* conn)

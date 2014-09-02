@@ -93,34 +93,13 @@ void win_console::set_process_cb(process_command_cb cb)
 
 void win_console::run_loop(void)
 {
-	/*
-	HANDLE hin = GetStdHandle(STD_INPUT_HANDLE);
-
-	DWORD mode = ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT; 
-	if (!SetConsoleMode(hin, mode))
-		return;
-
-	DWORD nread;
-	INPUT_RECORD inbuf[128];
-	while (ReadConsoleInput(hin, inbuf, 128, &nread)) {
-		for (int i=0; i<nread; i++) {
-			switch (inbuf[i].EventType) {
-			case KEY_EVENT:
-				onkey(inbuf[i].Event.KeyEvent);
-				break;
-			default:
-				break;
-			}
-		}
-	}
-	*/
-
 	const char* cmdtitle = ">>>";
 	HANDLE hin = GetStdHandle(STD_INPUT_HANDLE);
 	HANDLE hout = GetStdHandle(STD_OUTPUT_HANDLE);
 	while (1) {
-		if (!WriteFile(hout, cmdtitle, lstrlen(cmdtitle), NULL, NULL))
-			return;
+// 		if (!WriteFile(hout, cmdtitle, lstrlen(cmdtitle), NULL, NULL))
+// 			return;
+		DPRINT_NOENDL(LOG_INFO, "%s", cmdtitle);
 
 		DWORD len = 0;
 		if (!ReadFile(hin, line, 4095, &len, NULL))    // not overlapped 

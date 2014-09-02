@@ -46,9 +46,12 @@ static void timer_cb(evutil_socket_t fd, short what, void *arg)
 void im_connection::init()
 {
 	base = event_base_new();
+
+	dispatch();
 }
 void im_connection::uninit()
 {
+	exit_dispatch();
 	if (base)
 		event_base_free(base);
 	base = NULL;
@@ -113,6 +116,7 @@ void im_connection::disconnect(void)
 	closesocket(_fd);
 	evbuffer_free(_in);
 	evbuffer_free(_out);
+	_state = LIBIM_DISCONNECTED;
 	if (_ops->network_disconnected)
 		_ops->network_disconnected(this);
 	if (_account->_imp->connect_cb)
