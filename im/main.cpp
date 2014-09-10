@@ -13,6 +13,7 @@
 
 
 win_console console;
+im_account* _account;
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -29,10 +30,18 @@ static void network_error(im_connection* conn, int err) {
 	// TODO
 }
 
+static void connected(im_connection* conn) {
+	/** 
+	 * 登录成功后，将用户信息保存起来
+	 * 把“记住密码”等选项保存
+	 */
+	conn->_account->save_to_config(_account->_username.c_str());
+}
+
 static im_connection_ui_ops conn_ops =
 {
 	NULL,
-	NULL,
+	connected,
 	NULL,
 	NULL,
 	network_connected,
@@ -78,17 +87,46 @@ static im_conversation_ui_ops conv_ops = {
 //////////////////////////////////////////////////////////////////////////
 // main
 //////////////////////////////////////////////////////////////////////////
-im_account _account;
 
 
 static void login(char* arg[])
 {
-	_account.connect_server();
+	_account = new im_account();
+
+	_account->_protocal_name = "eyouim";
+	_account->_username = "im@eyou.net";
+	_account->_password = "WmhhbmdodWE1Mjg2MjU=";
+
+	_account->load_from_config(_account->_username.c_str());
+	
+
+	_account->connect_server();
 }
 static void logout(char* arg[])
 {
-	if (_account.is_connected())
-		_account.disconnect();
+	if (_account->is_connected())
+		_account->disconnect();
+
+	delete _account;
+	_account = NULL;
+}
+
+static void show_account(char* arg[])
+{
+	if (!_account) {
+		DPRINT(LOG_FATAL, "you have not login");
+		return;
+	}
+
+	DPRINT(LOG_WARING, "username:%s", _account->_username.c_str());
+	DPRINT(LOG_WARING, "alias:%s", _account->_alias.c_str());
+	DPRINT(LOG_WARING, "protocal:%s", _account->_protocal_name.c_str());
+	DPRINT(LOG_WARING, "mood:%s", _account->get_config_string("mood", "").c_str());
+}
+
+static void change_mood(char* arg[])
+{
+	
 }
 
 static void show_roster(char* arg[])
@@ -113,9 +151,12 @@ static void show_roster(char* arg[])
 
 static void tell(char* arg[]/*const char* buddy, const char* content*/)
 {
-	im_conversation* conv = im_conversation::make_conversation(&_account, arg[1], LIBIM_CONV_TYPE_SINGLE);
-	conv->add_member_by_id(arg[1]);
-	conv->send_chat(_account.get_username().c_str(), arg[2], LIBIM_MESSAGE_SEND, 0);
+	im_conversation* conv = im_conversation::find_conversation(_account, arg[1], LIBIM_CONV_TYPE_SINGLE);
+	if (!conv) {
+		conv = im_conversation::make_conversation(_account, arg[1], LIBIM_CONV_TYPE_SINGLE);
+		conv->add_member_by_id(arg[1]);
+	}
+	conv->send_message_plain(_account->get_username().c_str(), arg[2], LIBIM_MESSAGE_SEND, 0);
 }
 
 static void print_help(char* arg[]);
@@ -126,7 +167,9 @@ struct command_list_st {
 	void (*func)(char* arg[]);
 } cmd_list[] = {
 	{"login", "connect and auth to server", login},
+	{"ac", "show my information", show_account},
 	{"roster", "show roster", show_roster},
+	{"mood", "change my mood", change_mood},
 	{"tell", "tell somebuddy something", tell},
 	{"?", "output help information", print_help},
 	{"help", "output help information", print_help},
@@ -205,10 +248,6 @@ int main(int argc, char** argv)
 	im_connection::set_ui_ops(&conn_ops);
 	im_account::set_ui_ops(&account_ops);
 	im_conversation::set_ui_ops(&conv_ops);
-
-	_account._protocal_name = "eyouim";
-	_account._username = "im@eyou.net";
-	_account._password = "WmhhbmdodWE1Mjg2MjU=";
 
 	console.set_process_cb(command_process);
 	console.run_loop();

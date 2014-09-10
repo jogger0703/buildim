@@ -60,15 +60,19 @@ void eyou::set_auth_state(eyou_auth_state state)
 		break;
 	case EYOU_STATE_AUTHED:
 		{
+			/* 通知connection，认证成功 */
+			if (_conn->get_ui_ops()->connected)
+				_conn->get_ui_ops()->connected(_conn);
+
 			/* 验证通过，将自己的状态提交到服务器，否则好友看到我是离线的 */
 			std::string statepack;
 			_want_status = LIBIM_STATUS_AVAILABLE;
 			statepack = string_format("<presence id=\"104\"><status>%s</status><mood>%s</mood><avatar>%s</avatar><vcard><name>%s</name><gender>%s</gender></vcard></presence>",
 				eyou_buddy_state_to_string(_want_status),
-				_account->_mood.c_str(),
-				_account->_avatar.c_str(),
+				_account->get_config_string("mood", "").c_str(),
+				_account->get_config_string("buddy_icon_path", "").c_str(),
 				_account->_username.c_str(),
-				_account->_gender.c_str());
+				_account->get_config_bool("gender", true) ? "M" : "F");
 			eyou_write_plain(_conn, statepack.c_str(), statepack.length());
 
 			/* 获取roster */
@@ -80,8 +84,6 @@ void eyou::set_auth_state(eyou_auth_state state)
 
 			/* 设置心跳包触发计时器 */
 			_conn->set_keep_alive_idle(15);
-
-			set_auth_state(EYOU_STATE_POST_AUTH);
 		}
 		break;
 	default:

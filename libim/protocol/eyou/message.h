@@ -10,7 +10,8 @@ public:
 
 	virtual void	process(void);
 
-	static void		send_chat(im_conversation* conv, const char* who, const char* content, im_message_flags flags, time_t mtime);
+	static void		send_message_plain(im_conversation* conv, const char* who, const char* content, im_message_flags flags, time_t mtime);
+	static void		send_message(im_conversation* conv, im_conversation_message* m);
 };
 
 

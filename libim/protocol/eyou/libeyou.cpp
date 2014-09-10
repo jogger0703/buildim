@@ -61,7 +61,7 @@ static protocol_plugin_implement imp =
 	can_read,
 	on_timer,
 
-	eyou_message::send_chat,
+	eyou_message::send_message_plain,
 };
 
 static void init_plugin()

@@ -23,9 +23,11 @@ typedef enum {
 
 class im_conversation_message
 {
+public:
 	std::string		_who_sent;
 	std::string		_content;
 	im_message_flags _flags;
+	time_t			_time;
 };
 
 typedef struct 
@@ -62,7 +64,8 @@ public:
 	/* 存储了conversation在生存期内的消息记录 im_conversation_message */
 	im_list				_history;
 
-	void				send_chat(const char* who, const char* content, im_message_flags flags, time_t mtime);
+	void				send_message(im_conversation_message* m);
+	void				send_message_plain(const char* who, const char* content, im_message_flags flags, time_t mtime);
 
 	bool				add_member_by_id(const char* userid);
 	void				add_member(im_buddy_node* buddy);

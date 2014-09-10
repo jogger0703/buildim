@@ -29,7 +29,7 @@ void eyou_message::process(void)
 	}
 }
 
-void eyou_message::send_chat(im_conversation* conv, const char* who, const char* content, im_message_flags flags, time_t mtime)
+void eyou_message::send_message_plain(im_conversation* conv, const char* who, const char* content, im_message_flags flags, time_t mtime)
 {
 	im_buddy* b = (im_buddy*)conv->_members.front();
 	std::string xml = string_format(
@@ -44,4 +44,9 @@ void eyou_message::send_chat(im_conversation* conv, const char* who, const char*
 		content);
 
 	eyou_write_plain(conv->_account->get_connection(), xml.c_str(), xml.length());
+}
+
+void eyou_message::send_message(im_conversation* conv, im_conversation_message* m)
+{
+	send_message_plain(conv, m->_who_sent.c_str(), m->_content.c_str(), m->_flags, m->_time);
 }

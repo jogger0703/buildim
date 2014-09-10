@@ -82,13 +82,19 @@ void im_conversation::remove_conversation(im_conversation* conv)
  * @im_message_flags，消息标志
  * @mtime，发送时间，如果为0，则按系统时间发送
  */
-void im_conversation::send_chat(const char* who, const char* content, im_message_flags flags, time_t mtime)
+void im_conversation::send_message_plain(const char* who, const char* content, im_message_flags flags, time_t mtime)
 {
 	if (mtime == 0)
 		mtime = time(NULL);
 
-	if (_account->_imp->send_chat)
-		_account->_imp->send_chat(this, who, content, flags, mtime);
+	if (_account->_imp->send_message_plain)
+		_account->_imp->send_message_plain(this, who, content, flags, mtime);
+}
+
+void im_conversation::send_message(im_conversation_message* m)
+{
+	if (_account->_imp->send_message)
+		_account->_imp->send_message(this, m);
 }
 
 /**

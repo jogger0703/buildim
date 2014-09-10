@@ -26,8 +26,8 @@ typedef enum
 
 typedef enum {
 	LIBIM_DISCONNECTED = 0,
+	LIBIM_CONNECTING,
 	LIBIM_CONNECTED,
-	LIBIM_CONNECTING
 } im_connection_state;
 
 typedef struct

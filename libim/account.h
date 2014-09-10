@@ -27,17 +27,22 @@ public:
 
 	protocol_plugin_implement* _imp;
 	std::string		_username;
-	std::string		_mood;
-	std::string		_avatar;
-	std::string		_gender;
 	std::string		_alias;
 	std::string		_password;
-	std::string		_buddy_icon_path;
 	std::string		_protocal_name;
 	
-
-	bool			_remember_pass;
 	hash_config		_settings;
+
+	bool			load_from_config(const char* config_path);
+	bool			save_to_config(const char* config_path);
+
+	std::string		get_config_string(const char* k, const char* default_value);
+	int				get_config_int(const char* k, int default_value);
+	bool			get_config_bool(const char* k, bool default_value);
+	void			set_config_string(const char* k, const char* val);
+	void			set_config_int(const char* k, int val);
+	void			set_config_bool(const char* k, bool val);
+
 
 	static void		init(void);
 	static void		uninit(void);
