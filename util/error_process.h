@@ -35,19 +35,19 @@ static std::string errno2msg(int err)
   弹框提醒，警告提示
 */
 static void
-error_box(const TCHAR *s)
+error_box(const char *s)
 {
 	std::string content = s ? s : "";
 	std::string error_info = errno2msg(GetLastError());
 	content += error_info;
-	MessageBox(NULL, content.c_str(), "error", MB_OK | MB_ICONWARNING);
+	MessageBoxA(NULL, content.c_str(), "error", MB_OK | MB_ICONWARNING);
 }
 
 /*
   弹框提醒，警告提示，并且退出
 */
 static void
-error_quit(const TCHAR *s)
+error_quit(const char *s)
 {
 	error_box(s);
 	exit(0);
@@ -66,7 +66,7 @@ error_clear(void)
   DEBUG模式下的弹框提醒
 */
 static void
-error_debug(const TCHAR *s)
+error_debug(const char *s)
 {
 #ifdef _DEBUG
 	error_box(s);

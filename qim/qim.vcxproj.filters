@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;cxx;c;def</Extensions>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug">
+      <UniqueIdentifier>{75bd0e37-d558-4e16-b17c-ef6643139de2}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release">
+      <UniqueIdentifier>{b63a7985-f05c-4954-b273-ffa2c1d5a0f1}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="windows">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h</Extensions>
+    </Filter>
+    <Filter Include="libim">
+      <UniqueIdentifier>{3a9c1244-baf2-4ab8-a1c0-352ecbd1bc4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util">
+      <UniqueIdentifier>{a481c9d8-9b5a-4eec-9417-9e0c29988fe6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libim\protocol">
+      <UniqueIdentifier>{840c31cc-a387-4da2-8b26-b61636a9ae50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libim\protocol\eyou">
+      <UniqueIdentifier>{1ebd1822-7135-41fa-a91f-265fa2f9f909}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_mainwin.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_mainwin.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_mainwin.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="login_win.cpp">
+      <Filter>windows</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_login_win.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_login_win.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="mainwin.cpp">
+      <Filter>windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libim\protocol\eyou\eyou.cpp">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libim\protocol\eyou\io.cpp">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libim\protocol\eyou\iq.cpp">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libim\protocol\eyou\libeyou.cpp">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libim\protocol\eyou\message.cpp">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libim\protocol\eyou\packet.cpp">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libim\protocol\eyou\parser.cpp">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libim\protocol\eyou\presence.cpp">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libim\protocol\eyou\roster.cpp">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libim\account.cpp">
+      <Filter>libim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libim\buddy.cpp">
+      <Filter>libim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libim\connection.cpp">
+      <Filter>libim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libim\conversation.cpp">
+      <Filter>libim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libim\core.cpp">
+      <Filter>libim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libim\protocol_plugin.cpp">
+      <Filter>libim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libim\signal.cpp">
+      <Filter>libim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libim\status.cpp">
+      <Filter>libim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libim\value.cpp">
+      <Filter>libim</Filter>
+    </ClCompile>
+    <ClCompile Include="..\util\char_operation.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\util\config.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\util\exstring.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\util\log.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\util\makeuuid.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\util\network.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\util\workq.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\util\xmlnode.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="mainwin.h">
+      <Filter>windows</Filter>
+    </CustomBuild>
+    <CustomBuild Include="mainwin.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="mainwin.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="login_win.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="login_win.h">
+      <Filter>windows</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GeneratedFiles\ui_mainwin.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_login_win.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libim\protocol\eyou\eyou.h">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libim\protocol\eyou\io.h">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libim\protocol\eyou\iq.h">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libim\protocol\eyou\message.h">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libim\protocol\eyou\packet.h">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libim\protocol\eyou\parser.h">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libim\protocol\eyou\presence.h">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libim\protocol\eyou\roster.h">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libim\value.h">
+      <Filter>libim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libim\account.h">
+      <Filter>libim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libim\buddy.h">
+      <Filter>libim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libim\connection.h">
+      <Filter>libim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libim\conversation.h">
+      <Filter>libim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libim\core.h">
+      <Filter>libim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libim\protocol_plugin.h">
+      <Filter>libim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libim\signal.h">
+      <Filter>libim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libim\status.h">
+      <Filter>libim</Filter>
+    </ClInclude>
+    <ClInclude Include="..\util\xmlnode.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\util\char_operation.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\util\config.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\util\error_process.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\util\exstring.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\util\log.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\util\makeuuid.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\util\network.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\util\SimpleIni.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\util\workq.h">
+      <Filter>util</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

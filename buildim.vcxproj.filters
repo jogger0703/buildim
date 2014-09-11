@@ -11,10 +11,10 @@
       <UniqueIdentifier>{a777bfdd-a89b-464b-b94a-b4ae9cae86d6}</UniqueIdentifier>
     </Filter>
     <Filter Include="libim\protocol">
-      <UniqueIdentifier>{c512b086-e4fd-4a96-b154-10f451ebe767}</UniqueIdentifier>
+      <UniqueIdentifier>{dce95cd2-2fae-4392-b8b4-4d4459d9003e}</UniqueIdentifier>
     </Filter>
     <Filter Include="libim\protocol\eyou">
-      <UniqueIdentifier>{cca09eb3-503c-4a28-9e1d-28c7ceb1575a}</UniqueIdentifier>
+      <UniqueIdentifier>{44569aff-a54b-4b8f-82ed-506ce38e44ed}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -24,7 +24,61 @@
     <ClCompile Include="util\network.cpp">
       <Filter>util</Filter>
     </ClCompile>
+    <ClCompile Include="im\main.cpp">
+      <Filter>im</Filter>
+    </ClCompile>
+    <ClCompile Include="util\workq.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="util\config.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="util\exstring.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="util\log.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="util\makeuuid.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="im\console.cpp">
+      <Filter>im</Filter>
+    </ClCompile>
+    <ClCompile Include="util\xmlnode.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="libim\protocol\eyou\eyou.cpp">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClCompile>
+    <ClCompile Include="libim\protocol\eyou\io.cpp">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClCompile>
+    <ClCompile Include="libim\protocol\eyou\iq.cpp">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClCompile>
+    <ClCompile Include="libim\protocol\eyou\libeyou.cpp">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClCompile>
+    <ClCompile Include="libim\protocol\eyou\message.cpp">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClCompile>
+    <ClCompile Include="libim\protocol\eyou\packet.cpp">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClCompile>
+    <ClCompile Include="libim\protocol\eyou\parser.cpp">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClCompile>
+    <ClCompile Include="libim\protocol\eyou\presence.cpp">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClCompile>
+    <ClCompile Include="libim\protocol\eyou\roster.cpp">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClCompile>
     <ClCompile Include="libim\account.cpp">
+      <Filter>libim</Filter>
+    </ClCompile>
+    <ClCompile Include="libim\buddy.cpp">
       <Filter>libim</Filter>
     </ClCompile>
     <ClCompile Include="libim\connection.cpp">
@@ -36,71 +90,17 @@
     <ClCompile Include="libim\core.cpp">
       <Filter>libim</Filter>
     </ClCompile>
-    <ClCompile Include="libim\signal.cpp">
-      <Filter>libim</Filter>
-    </ClCompile>
-    <ClCompile Include="libim\value.cpp">
-      <Filter>libim</Filter>
-    </ClCompile>
-    <ClCompile Include="im\main.cpp">
-      <Filter>im</Filter>
-    </ClCompile>
-    <ClCompile Include="util\workq.cpp">
-      <Filter>util</Filter>
-    </ClCompile>
-    <ClCompile Include="util\config.cpp">
-      <Filter>util</Filter>
-    </ClCompile>
     <ClCompile Include="libim\protocol_plugin.cpp">
       <Filter>libim</Filter>
     </ClCompile>
-    <ClCompile Include="util\exstring.cpp">
-      <Filter>util</Filter>
-    </ClCompile>
-    <ClCompile Include="libim\protocol\eyou\eyou.cpp">
-      <Filter>libim\protocol\eyou</Filter>
-    </ClCompile>
-    <ClCompile Include="libim\protocol\eyou\libeyou.cpp">
-      <Filter>libim\protocol\eyou</Filter>
-    </ClCompile>
-    <ClCompile Include="libim\protocol\eyou\iq.cpp">
-      <Filter>libim\protocol\eyou</Filter>
-    </ClCompile>
-    <ClCompile Include="libim\protocol\eyou\message.cpp">
-      <Filter>libim\protocol\eyou</Filter>
-    </ClCompile>
-    <ClCompile Include="libim\protocol\eyou\presence.cpp">
-      <Filter>libim\protocol\eyou</Filter>
-    </ClCompile>
-    <ClCompile Include="libim\protocol\eyou\packet.cpp">
-      <Filter>libim\protocol\eyou</Filter>
-    </ClCompile>
-    <ClCompile Include="libim\protocol\eyou\parser.cpp">
-      <Filter>libim\protocol\eyou</Filter>
-    </ClCompile>
-    <ClCompile Include="libim\protocol\eyou\io.cpp">
-      <Filter>libim\protocol\eyou</Filter>
-    </ClCompile>
-    <ClCompile Include="util\log.cpp">
-      <Filter>util</Filter>
+    <ClCompile Include="libim\signal.cpp">
+      <Filter>libim</Filter>
     </ClCompile>
     <ClCompile Include="libim\status.cpp">
       <Filter>libim</Filter>
     </ClCompile>
-    <ClCompile Include="util\makeuuid.cpp">
-      <Filter>util</Filter>
-    </ClCompile>
-    <ClCompile Include="libim\buddy.cpp">
+    <ClCompile Include="libim\value.cpp">
       <Filter>libim</Filter>
-    </ClCompile>
-    <ClCompile Include="im\console.cpp">
-      <Filter>im</Filter>
-    </ClCompile>
-    <ClCompile Include="libim\protocol\eyou\roster.cpp">
-      <Filter>libim\protocol\eyou</Filter>
-    </ClCompile>
-    <ClCompile Include="util\xmlnode.cpp">
-      <Filter>util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -109,24 +109,6 @@
     </ClInclude>
     <ClInclude Include="util\network.h">
       <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="libim\account.h">
-      <Filter>libim</Filter>
-    </ClInclude>
-    <ClInclude Include="libim\connection.h">
-      <Filter>libim</Filter>
-    </ClInclude>
-    <ClInclude Include="libim\conversation.h">
-      <Filter>libim</Filter>
-    </ClInclude>
-    <ClInclude Include="libim\core.h">
-      <Filter>libim</Filter>
-    </ClInclude>
-    <ClInclude Include="libim\signal.h">
-      <Filter>libim</Filter>
-    </ClInclude>
-    <ClInclude Include="libim\value.h">
-      <Filter>libim</Filter>
     </ClInclude>
     <ClInclude Include="util\error_process.h">
       <Filter>util</Filter>
@@ -140,13 +122,25 @@
     <ClInclude Include="util\SimpleIni.h">
       <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="libim\protocol_plugin.h">
-      <Filter>libim</Filter>
-    </ClInclude>
     <ClInclude Include="util\exstring.h">
       <Filter>util</Filter>
     </ClInclude>
+    <ClInclude Include="util\log.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="util\makeuuid.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="im\console.h">
+      <Filter>im</Filter>
+    </ClInclude>
+    <ClInclude Include="util\xmlnode.h">
+      <Filter>util</Filter>
+    </ClInclude>
     <ClInclude Include="libim\protocol\eyou\eyou.h">
+      <Filter>libim\protocol\eyou</Filter>
+    </ClInclude>
+    <ClInclude Include="libim\protocol\eyou\io.h">
       <Filter>libim\protocol\eyou</Filter>
     </ClInclude>
     <ClInclude Include="libim\protocol\eyou\iq.h">
@@ -155,38 +149,44 @@
     <ClInclude Include="libim\protocol\eyou\message.h">
       <Filter>libim\protocol\eyou</Filter>
     </ClInclude>
-    <ClInclude Include="libim\protocol\eyou\presence.h">
-      <Filter>libim\protocol\eyou</Filter>
-    </ClInclude>
     <ClInclude Include="libim\protocol\eyou\packet.h">
       <Filter>libim\protocol\eyou</Filter>
     </ClInclude>
     <ClInclude Include="libim\protocol\eyou\parser.h">
       <Filter>libim\protocol\eyou</Filter>
     </ClInclude>
-    <ClInclude Include="libim\protocol\eyou\io.h">
+    <ClInclude Include="libim\protocol\eyou\presence.h">
       <Filter>libim\protocol\eyou</Filter>
-    </ClInclude>
-    <ClInclude Include="util\log.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="libim\status.h">
-      <Filter>libim</Filter>
-    </ClInclude>
-    <ClInclude Include="util\makeuuid.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="libim\buddy.h">
-      <Filter>libim</Filter>
-    </ClInclude>
-    <ClInclude Include="im\console.h">
-      <Filter>im</Filter>
     </ClInclude>
     <ClInclude Include="libim\protocol\eyou\roster.h">
       <Filter>libim\protocol\eyou</Filter>
     </ClInclude>
-    <ClInclude Include="util\xmlnode.h">
-      <Filter>util</Filter>
+    <ClInclude Include="libim\value.h">
+      <Filter>libim</Filter>
+    </ClInclude>
+    <ClInclude Include="libim\account.h">
+      <Filter>libim</Filter>
+    </ClInclude>
+    <ClInclude Include="libim\buddy.h">
+      <Filter>libim</Filter>
+    </ClInclude>
+    <ClInclude Include="libim\connection.h">
+      <Filter>libim</Filter>
+    </ClInclude>
+    <ClInclude Include="libim\conversation.h">
+      <Filter>libim</Filter>
+    </ClInclude>
+    <ClInclude Include="libim\core.h">
+      <Filter>libim</Filter>
+    </ClInclude>
+    <ClInclude Include="libim\protocol_plugin.h">
+      <Filter>libim</Filter>
+    </ClInclude>
+    <ClInclude Include="libim\signal.h">
+      <Filter>libim</Filter>
+    </ClInclude>
+    <ClInclude Include="libim\status.h">
+      <Filter>libim</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

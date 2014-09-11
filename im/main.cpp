@@ -230,6 +230,7 @@ static void command_process(const char* line)
 }
 
 #include <libxml/tree.h>
+
 int main(int argc, char** argv)
 {
 // 	xmlDocPtr doc = NULL;
